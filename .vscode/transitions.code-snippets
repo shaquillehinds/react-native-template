@@ -2,7 +2,7 @@
   "Debug Logger": {
     "prefix": "deb",
     "body": [
-      "import { DebugLogger } from \"@utils/logger\";",
+      "import { DebugLogger } from \"@utils/Logger\";",
       "",
       "const log = DebugLogger(\"$1$TM_FILENAME\");"
     ],
@@ -30,7 +30,7 @@
       "export default function $TM_FILENAME_BASE() {",
       "  return (",
       "    <View>",
-      "      ",
+      "      $1",
       "    </View>",
       "  )",
       "}",
@@ -40,6 +40,26 @@
       "});"
     ],
     "description": "New View"
+  },
+  "New view with children": {
+    "prefix": "vic",
+    "body": [
+      "import React, { PropsWithChildren } from \"react\";",
+      "import { StyleSheet, View } from \"react-native\";",
+      "",
+      "export default function $TM_FILENAME_BASE({ children}: PropsWithChildren<Props>) {",
+      "  return (",
+      "    <View>",
+      "      $1",
+      "    </View>",
+      "  )",
+      "}",
+      "",
+      "const styles = StyleSheet.create({",
+      "  ",
+      "});"
+    ],
+    "description": "New view with children"
   },
   "New stylesheet": {
     "prefix": "sty",

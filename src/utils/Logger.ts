@@ -1,21 +1,18 @@
 import CONFIG from '@configuration';
 
-type LoggerMode = 'warn' | 'error' | 'default';
-
 /**
  *
  * This is a logger function that will disable console logs outside of development mode
+ * If the first value is 'warn' the logger will console.warn, 'error' will console.error
  *
  * @param {input} any[]
- * @param {mode} "warn" || "error"
- * @param {source} "file name/function name"
  *
  */
-export function Logger(input: any[], mode?: LoggerMode, source = 'Logger') {
+export function Logger(input: any[], source = 'Logger') {
   if (CONFIG.mode !== 'prod') {
-    if (mode === 'warn') {
+    if (input[0] === 'warn') {
       console.warn(source + ': ', ...input);
-    } else if (mode === 'error') {
+    } else if (input[0] === 'error') {
       console.error(source + ': ', ...input);
     } else {
       console.log(source + ': ', ...input);
@@ -31,8 +28,7 @@ export function Logger(input: any[], mode?: LoggerMode, source = 'Logger') {
  *
  */
 export function DebugLogger(source: string) {
-  return (input: any[], mode?: LoggerMode, src = '') =>
-    Logger(input, mode, source + '/' + src);
+  return (...args: any[]) => Logger(args, source + '/');
 }
 
 export default Logger;

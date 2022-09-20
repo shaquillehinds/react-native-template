@@ -12,13 +12,16 @@
     "paths": {
       "@assets/*": ["./assets/*"],
       "@store/*": ["./src/store/*"],
+      "@store": ["./src/store"],
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"],
-      "@views/*": ["./src/views/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@routers/*": ["./src/routers/*"],
       "@transports/*": ["./src/transports/*"],
       "@navigators/*": ["./src/navigators/*"],
+      "@components/*": ["./src/components/*"],
       "@configuration": ["./configuration"]
     },
   },
-  "include": ["src" ]
+  "include": ["src", "App*.tsx",  ]
 }

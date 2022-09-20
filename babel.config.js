@@ -1,6 +1,7 @@
 module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   plugins: [
+    ['@babel/plugin-proposal-export-namespace-from'],
     [
       'module:react-native-dotenv',
       {
@@ -29,9 +30,11 @@ module.exports = {
           '@hooks': './src/hooks',
           '@store': './src/store',
           '@utils': './src/utils',
-          '@views': './src/views',
+          '@screens': './src/screens',
+          '@routers': './src/routers',
           '@transports': './src/transports',
           '@navigators': './src/navigators',
+          '@components': './src/components',
           '@configuration': './configuration.ts',
         },
       },
