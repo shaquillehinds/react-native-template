@@ -47,6 +47,8 @@
       "import React, { PropsWithChildren } from \"react\";",
       "import { StyleSheet, View } from \"react-native\";",
       "",
+      "interface Props {}",
+      "",
       "export default function $TM_FILENAME_BASE({ children}: PropsWithChildren<Props>) {",
       "  return (",
       "    <View>",

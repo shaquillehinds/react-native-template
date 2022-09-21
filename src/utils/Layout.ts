@@ -23,8 +23,8 @@ export const SCREEN_WIDTH = width;
 export const SCREEN_HEIGHT = wHeight;
 export const isSmallDevice = width < 375;
 export const isBigDevice = width > 1100;
-export const relativeX = (num: number) => (height - diff / 2) * (num / 100);
-export const relativeY = (num: number) => width * (num / 100);
+export const relativeY = (num: number) => (height - diff / 2) * (num / 100);
+export const relativeX = (num: number) => width * (num / 100);
 export const isIOS = Platform.OS === 'ios';
 export function normalize(size: number) {
   const newSize = relativeY(size * scale);

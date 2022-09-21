@@ -26,14 +26,14 @@ interface AppColors {
   background: string;
   form: string;
   input: string;
-  typeface: Typeface;
+  typeface: TypefaceColor;
   mode: 'light' | 'dark';
   theme: AppTheme;
 }
 
 type Themes = { [key in AppTheme]: AppColors };
 
-interface Typeface {
+interface TypefaceColor {
   primary: string;
   secondary: string;
   tertiary: string;
