@@ -24,17 +24,18 @@ export function normalize(size: number) {
   }
 }
 
-export const borderSizes = {
+export const borderSizes: { [key in BorderSize]: number } = {
   razor: relativeX(0.1),
   thin: relativeX(0.25),
   medium: relativeX(0.5),
   large: relativeX(0.75),
 };
 
-export const radiusSizes = {
+export const radiusSizes: { [key in RadiusSize]: number } = {
   edgy: relativeX(0.5),
   sharp: relativeX(1.5),
   medium: relativeX(2.5),
   soft: relativeX(4),
   curvy: relativeX(6),
+  round: relativeX(8),
 };

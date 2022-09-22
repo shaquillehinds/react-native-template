@@ -5,7 +5,7 @@ import React, { PropsWithChildren } from 'react';
 import { Text } from 'react-native';
 import { BaseTextProps } from './Text.types';
 
-const fontScale = 1.15;
+const fontScale = 1;
 
 export const fontSizes: { [key in FontSize]: number } = {
   headingL: normalize(26 * fontScale),
