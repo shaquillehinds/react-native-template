@@ -13,6 +13,7 @@
       "@assets/*": ["./assets/*"],
       "@store/*": ["./src/store/*"],
       "@store": ["./src/store"],
+      "@styles/*": ["./src/styles/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"],
       "@screens/*": ["./src/screens/*"],

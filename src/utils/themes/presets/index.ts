@@ -1,4 +1,4 @@
-import DEFAULT from './default';
+import DEFAULT from './default.theme';
 
 const appThemes: Themes = {
   DEFAULT,

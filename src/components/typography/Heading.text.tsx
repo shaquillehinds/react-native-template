@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import BaseText from './Base.text';
-import { AppTextProps } from './types';
+import { BaseTextProps } from './Text.types';
 
-interface HeadingTextProps extends AppTextProps {
+interface HeadingTextProps extends BaseTextProps {
   fontSize?: 'headingM' | 'headingL';
 }
 
@@ -14,6 +14,9 @@ export default function Heading(props: PropsWithChildren<HeadingTextProps>) {
       color={props.color}
       style={props.style}
       letterSpacing={props.letterSpacing}
+      numberOfLines={props.numberOfLines}
+      padding={props.padding}
+      margin={props.margin}
       lineHeight={props.lineHeight}>
       {props.children}
     </BaseText>

@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import BaseText from './Base.text';
-import { AppTextProps } from './types';
+import { BaseTextProps } from './Text.types';
 
-interface TitleTextProps extends AppTextProps {
+interface TitleTextProps extends BaseTextProps {
   fontSize?: 'titleS' | 'titleL';
 }
 
@@ -14,6 +14,9 @@ export default function Title(props: PropsWithChildren<TitleTextProps>) {
       color={props.color}
       style={props.style}
       letterSpacing={props.letterSpacing}
+      numberOfLines={props.numberOfLines}
+      padding={props.padding}
+      margin={props.margin}
       lineHeight={props.lineHeight}>
       {props.children}
     </BaseText>

@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from 'react';
 import BaseText from './Base.text';
-import { AppTextProps } from './types';
+import { BaseTextProps } from './Text.types';
 
-interface BodyTextProps extends AppTextProps {
-  fontSize?: 'bodyM' | 'bodyS';
+interface BodyTextProps extends BaseTextProps {
+  fontSize?: 'bodyL' | 'bodyS';
 }
 
 export default function Body(props: PropsWithChildren<BodyTextProps>) {
@@ -14,7 +14,10 @@ export default function Body(props: PropsWithChildren<BodyTextProps>) {
       color={props.color}
       style={props.style}
       letterSpacing={props.letterSpacing}
-      lineHeight={props.lineHeight}>
+      lineHeight={props.lineHeight}
+      padding={props.padding}
+      margin={props.margin}
+      numberOfLines={props.numberOfLines}>
       {props.children}
     </BaseText>
   );

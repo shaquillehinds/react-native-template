@@ -30,6 +30,7 @@ module.exports = {
           '@hooks': './src/hooks',
           '@store': './src/store',
           '@utils': './src/utils',
+          '@styles': './src/styles',
           '@screens': './src/screens',
           '@routers': './src/routers',
           '@transports': './src/transports',

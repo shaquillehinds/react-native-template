@@ -8,17 +8,6 @@ const diff = height - wHeight;
 
 const scale = 0.11519078473722104;
 
-interface Layout {
-  SCREEN_WIDTH: number;
-  SCREEN_HEIGHT: number;
-  isSmallDevice: boolean;
-  isBigDevice: boolean;
-  relativeY: (num: number) => number;
-  relativeX: (num: number) => number;
-  normalize: (size: number) => number;
-  isIOS: boolean;
-}
-
 export const SCREEN_WIDTH = width;
 export const SCREEN_HEIGHT = wHeight;
 export const isSmallDevice = width < 375;
@@ -35,15 +24,17 @@ export function normalize(size: number) {
   }
 }
 
-const Layout: Layout = {
-  SCREEN_WIDTH,
-  SCREEN_HEIGHT,
-  isSmallDevice,
-  isBigDevice,
-  relativeY,
-  relativeX,
-  normalize,
-  isIOS,
+export const borderSizes = {
+  razor: relativeX(0.1),
+  thin: relativeX(0.25),
+  medium: relativeX(0.5),
+  large: relativeX(0.75),
 };
 
-export default Layout;
+export const radiusSizes = {
+  edgy: relativeX(0.5),
+  sharp: relativeX(1.5),
+  medium: relativeX(2.5),
+  soft: relativeX(4),
+  curvy: relativeX(6),
+};

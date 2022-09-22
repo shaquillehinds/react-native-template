@@ -63,6 +63,29 @@
     ],
     "description": "New view with children"
   },
+  "New Screen With Props": {
+    "prefix": "scrp",
+    "body": [
+      "import React from 'react';",
+      "import { StyleSheet } from 'react-native';",
+      "import ScreenLayout from '@components/layouts/Screen.layout';",
+      "",
+      "export default function ${TM_FILENAME_BASE/\\.(.?)/${1:/upcase}/}(",
+      "  // MainNavationtionProps.{Name of stack}<{Name of screen}>",
+      "  props: MainNavigationProps.${TM_DIRECTORY/(.*\\/)(.*\\.)//}<'${TM_FILENAME_BASE/\\..*//}'>,",
+      ") {",
+      "  return (",
+      "    <ScreenLayout>",
+      "      $1",
+      "    </ScreenLayout>",
+      "  );",
+      "}",
+      "",
+      "const styles = StyleSheet.create({});",
+      ""
+    ],
+    "description": "New Screen With Props"
+  },
   "New stylesheet": {
     "prefix": "sty",
     "body": ["", "const styles = StyleSheet.create({", "  $1", "});"],
