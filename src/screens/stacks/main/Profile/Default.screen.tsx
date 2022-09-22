@@ -1,15 +1,12 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import ScreenLayout from '@components/layouts/Screen.layout';
 
-export default function ProfileScreen(
+export default function DefaultScreen(
   // MainNavationtionProps.{Name of stack}<{Name of screen}>
   props: MainNavigationProps.Profile<'Default'>,
 ) {
-  return (
-    <View>
-      <View />
-    </View>
-  );
+  return <ScreenLayout />;
 }
 
 const styles = StyleSheet.create({});

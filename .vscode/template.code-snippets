@@ -72,7 +72,7 @@
       "",
       "export default function ${TM_FILENAME_BASE/\\.(.?)/${1:/upcase}/}(",
       "  // MainNavationtionProps.{Name of stack}<{Name of screen}>",
-      "  props: MainNavigationProps.${TM_DIRECTORY/(.*\\/)(.*\\.)//}<'${TM_FILENAME_BASE/\\..*//}'>,",
+      "  props: MainNavigationProps.${TM_DIRECTORY/(.*\\/)//}<'${TM_FILENAME_BASE/\\..*//}'>,",
       ") {",
       "  return (",
       "    <ScreenLayout>",
