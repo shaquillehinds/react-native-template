@@ -9,16 +9,9 @@ interface HeadingTextProps extends BaseTextProps {
 export default function Heading(props: PropsWithChildren<HeadingTextProps>) {
   return (
     <BaseText
+      {...props}
       fontSize={props.fontSize ? props.fontSize : 'headingS'}
       fontStyle={props.fontStyle ? props.fontStyle : 'PoppinsSemiBold'}
-      color={props.color}
-      style={props.style}
-      letterSpacing={props.letterSpacing}
-      numberOfLines={props.numberOfLines}
-      padding={props.padding}
-      margin={props.margin}
-      lineHeight={props.lineHeight}>
-      {props.children}
-    </BaseText>
+    />
   );
 }

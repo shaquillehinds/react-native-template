@@ -7,18 +7,5 @@ interface BodyTextProps extends BaseTextProps {
 }
 
 export default function Body(props: PropsWithChildren<BodyTextProps>) {
-  return (
-    <BaseText
-      fontSize={props.fontSize}
-      fontStyle={props.fontStyle}
-      color={props.color}
-      style={props.style}
-      letterSpacing={props.letterSpacing}
-      lineHeight={props.lineHeight}
-      padding={props.padding}
-      margin={props.margin}
-      numberOfLines={props.numberOfLines}>
-      {props.children}
-    </BaseText>
-  );
+  return <BaseText {...props} />;
 }

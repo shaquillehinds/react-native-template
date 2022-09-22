@@ -1,23 +1,11 @@
 import { transformSpacing } from '@styles/Spacer/Spacer.style';
-import { normalize } from '@utils/constants/Layout.const';
+import { fontSizes } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
 import React, { PropsWithChildren } from 'react';
 import { Text } from 'react-native';
+import Animated from 'react-native-reanimated';
 import { BaseTextProps } from './Text.types';
 
-const fontScale = 1;
-
-export const fontSizes: { [key in FontSize]: number } = {
-  headingL: normalize(26 * fontScale),
-  headingM: normalize(24 * fontScale),
-  headingS: normalize(22 * fontScale),
-  titleL: normalize(20 * fontScale),
-  titleM: normalize(18 * fontScale),
-  titleS: normalize(16 * fontScale),
-  bodyL: normalize(14 * fontScale),
-  bodyM: normalize(12 * fontScale),
-  bodyS: normalize(10 * fontScale),
-};
 const spacings: { [key in LetterSpacing]: number } = {
   wide: 0.7,
   extraWide: 1.2,
@@ -33,20 +21,25 @@ export default function Base({
   color = 'primary',
   fontStyle = 'Poppins',
   style,
+  customColor,
   letterSpacing,
   lineHeight,
   numberOfLines,
   padding,
   margin,
+  animate,
 }: PropsWithChildren<BaseTextProps>) {
+  const TextComponent = animate
+    ? Animated.Text
+    : (Text as typeof Animated.Text);
   return (
-    <Text
+    <TextComponent
       numberOfLines={numberOfLines}
       style={[
         {
           fontFamily: fontStyle,
           fontSize: fontSizes[fontSize],
-          color: theme.typeface[color],
+          color: customColor || theme.typeface[color],
           letterSpacing: letterSpacing ? spacings[letterSpacing] : undefined,
           lineHeight:
             lineHeight && fontSize
@@ -57,6 +50,6 @@ export default function Base({
         style,
       ]}>
       {children}
-    </Text>
+    </TextComponent>
   );
 }

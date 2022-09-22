@@ -8,6 +8,8 @@ const diff = height - wHeight;
 
 const scale = 0.11519078473722104;
 
+const fontScale = 1;
+
 export const SCREEN_WIDTH = width;
 export const SCREEN_HEIGHT = wHeight;
 export const isSmallDevice = width < 375;
@@ -24,6 +26,17 @@ export function normalize(size: number) {
   }
 }
 
+export const fontSizes: { [key in FontSize]: number } = {
+  headingL: normalize(26 * fontScale),
+  headingM: normalize(24 * fontScale),
+  headingS: normalize(22 * fontScale),
+  titleL: normalize(20 * fontScale),
+  titleM: normalize(18 * fontScale),
+  titleS: normalize(16 * fontScale),
+  bodyL: normalize(14 * fontScale),
+  bodyM: normalize(12 * fontScale),
+  bodyS: normalize(10 * fontScale),
+};
 export const borderSizes: { [key in BorderSize]: number } = {
   razor: relativeX(0.1),
   thin: relativeX(0.25),
@@ -38,4 +51,32 @@ export const radiusSizes: { [key in RadiusSize]: number } = {
   soft: relativeX(4),
   curvy: relativeX(6),
   round: relativeX(8),
+};
+
+export const buttonSizes: {
+  [key in ButtonSize]: {
+    paddingHorizontal: number;
+    paddingVertical: number;
+    fontSize: FontSize;
+    borderRadius: RadiusSize;
+  };
+} = {
+  small: {
+    paddingHorizontal: relativeX(3),
+    paddingVertical: relativeY(0.2),
+    fontSize: 'bodyM',
+    borderRadius: 'sharp',
+  },
+  medium: {
+    paddingHorizontal: relativeX(5),
+    paddingVertical: relativeY(1.0),
+    fontSize: 'headingS',
+    borderRadius: 'medium',
+  },
+  large: {
+    paddingHorizontal: relativeX(7),
+    paddingVertical: relativeY(1.5),
+    fontSize: 'headingL',
+    borderRadius: 'soft',
+  },
 };

@@ -9,16 +9,9 @@ interface TitleTextProps extends BaseTextProps {
 export default function Title(props: PropsWithChildren<TitleTextProps>) {
   return (
     <BaseText
+      {...props}
       fontSize={props.fontSize ? props.fontSize : 'titleM'}
       fontStyle={props.fontStyle ? props.fontStyle : 'PoppinsMedium'}
-      color={props.color}
-      style={props.style}
-      letterSpacing={props.letterSpacing}
-      numberOfLines={props.numberOfLines}
-      padding={props.padding}
-      margin={props.margin}
-      lineHeight={props.lineHeight}>
-      {props.children}
-    </BaseText>
+    />
   );
 }

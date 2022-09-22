@@ -1,26 +1,8 @@
 type AppTheme = 'DEFAULT';
 
 interface AppColors {
-  primary: {
-    dark: string;
-    medium: string;
-    light: string;
-    button: {
-      background: string;
-      text: string;
-      border: string;
-    };
-  };
-  secondary: {
-    dark: string;
-    medium: string;
-    light: string;
-    button: {
-      background: string;
-      text: string;
-      border: string;
-    };
-  };
+  primary: Colors;
+  secondary: Colors;
   accent: string;
   warning: string;
   background: string;
@@ -38,4 +20,16 @@ interface TypefaceColor {
   secondary: string;
   tertiary: string;
   warning: string;
+}
+
+interface ButtonColors {
+  background: string;
+  text: string;
+  border: string;
+}
+interface Colors {
+  dark: string;
+  medium: string;
+  light: string;
+  button: ButtonColors;
 }

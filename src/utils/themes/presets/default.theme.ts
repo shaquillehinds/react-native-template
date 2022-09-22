@@ -4,9 +4,9 @@ const DEFAULT: AppColors = {
     medium: '#F94C5766',
     light: '#FF5A5F33',
     button: {
-      background: '#000000',
+      background: '#F94C57',
       text: '#FFFFFF',
-      border: '#000000',
+      border: '#F94C57',
     },
   },
   secondary: {
