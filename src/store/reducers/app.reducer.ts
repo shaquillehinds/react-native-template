@@ -9,6 +9,7 @@ const initialState: AppState = {
   firstDownload: false,
   loaded: false,
   theme: 'DEFAULT',
+  drawerLockMode: 'unlocked',
 };
 
 const appReducer = (state = initialState, action: AppAction): AppState => {
@@ -20,6 +21,10 @@ const appReducer = (state = initialState, action: AppAction): AppState => {
     case AppActionType.SET_THEME:
       applyTheme({ appTheme: action.payload });
       return { ...state, theme: action.payload };
+    case AppActionType.SET_DRAWER_REF:
+      return { ...state, drawerRef: action.payload };
+    case AppActionType.SET_DRAWER_LOCK_MODE:
+      return { ...state, drawerLockMode: action.payload };
     default:
       return state;
   }
