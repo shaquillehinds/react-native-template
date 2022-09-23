@@ -62,21 +62,21 @@ export const buttonSizes: {
   };
 } = {
   small: {
-    paddingHorizontal: relativeX(3),
-    paddingVertical: relativeY(0.2),
-    fontSize: 'bodyM',
-    borderRadius: 'sharp',
-  },
-  medium: {
-    paddingHorizontal: relativeX(5),
-    paddingVertical: relativeY(1.0),
-    fontSize: 'headingS',
+    paddingHorizontal: relativeX(12),
+    paddingVertical: relativeY(0.5),
+    fontSize: 'bodyS',
     borderRadius: 'medium',
   },
-  large: {
-    paddingHorizontal: relativeX(7),
-    paddingVertical: relativeY(1.5),
-    fontSize: 'headingL',
+  medium: {
+    paddingHorizontal: relativeX(15),
+    paddingVertical: relativeY(1.0),
+    fontSize: 'bodyL',
     borderRadius: 'soft',
+  },
+  large: {
+    paddingHorizontal: relativeX(18),
+    paddingVertical: relativeY(1.5),
+    fontSize: 'titleL',
+    borderRadius: 'curvy',
   },
 };
