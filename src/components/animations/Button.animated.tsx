@@ -28,7 +28,7 @@ export default function ButtonAnimated(props: PropsWithChildren<Props>) {
     <PrimaryButton
       activeOpacity={1}
       animate
-      style={[style, s, props.style]}
+      {...props}
       onPressIn={e => {
         sharedValue.value = 0.95;
         props.onPressIn && props.onPressIn(e);
@@ -37,7 +37,7 @@ export default function ButtonAnimated(props: PropsWithChildren<Props>) {
         sharedValue.value = 1;
         props.onPressOut && props.onPressOut(e);
       }}
-      {...props}>
+      style={[style, s, props.style]}>
       Animate
     </PrimaryButton>
   );

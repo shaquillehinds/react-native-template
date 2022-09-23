@@ -9,6 +9,7 @@ export default function SettingsStackScreens() {
   return (
     <SettingsStack.Navigator
       screenOptions={{
+        headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: theme.background,
         },

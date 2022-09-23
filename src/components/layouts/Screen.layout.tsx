@@ -1,6 +1,10 @@
 import { transformSpacing } from '@styles/Spacer/Spacer.style';
 import { Spacing } from '@styles/Spacer/Spacer.types';
-import { normalize } from '@utils/constants/Layout.const';
+import {
+  normalize,
+  relativeY,
+  SCREEN_WIDTH,
+} from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
 import React, { PropsWithChildren, useMemo } from 'react';
 import {
@@ -25,11 +29,13 @@ export default function ScreenLayout(
 ) {
   const style: ViewStyle = useMemo(
     () => ({
+      display: 'flex',
       flex: 1,
       backgroundColor: theme.background,
       alignItems: props.center ? 'center' : undefined,
       justifyContent: props.centerY ? 'center' : undefined,
       height: props.height && normalize(props.height),
+      paddingBottom: relativeY(7.8),
       ...transformSpacing({ padding: props.padding, margin: props.margin }),
     }),
     [],

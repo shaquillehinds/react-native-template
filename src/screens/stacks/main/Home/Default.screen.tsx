@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import ScreenLayout from '@components/layouts/Screen.layout';
-import BaseButton from '@components/buttons/Base.button';
 import ButtonAnimated from '@components/animations/Button.animated';
+import shadowStyles from '@styles/Shadow.style';
 
 export default function HomeScreen(
   // MainNavationtionProps.{Name of stack}<{Name of screen}>
@@ -16,7 +16,10 @@ export default function HomeScreen(
       <ButtonAnimated buttonType="primary" buttonSize="medium">
         Button
       </ButtonAnimated>
-      <ButtonAnimated buttonSize="large" buttonType="primary">
+      <ButtonAnimated
+        style={shadowStyles({ shadowRadius: 8 })}
+        buttonSize="large"
+        buttonType="primary">
         Animated
       </ButtonAnimated>
     </ScreenLayout>

@@ -11,6 +11,7 @@ export default function HomeStackScreens() {
   return (
     <HomeStack.Navigator
       screenOptions={{
+        headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: theme.background,
         },

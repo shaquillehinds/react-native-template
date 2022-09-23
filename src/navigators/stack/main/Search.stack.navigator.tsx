@@ -9,6 +9,7 @@ export default function SearchStackScreens() {
   return (
     <SearchStack.Navigator
       screenOptions={{
+        headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: theme.background,
         },

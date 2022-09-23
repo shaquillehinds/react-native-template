@@ -99,6 +99,7 @@
       "  return (",
       "    <${TM_FILENAME_BASE/\\..*//}Stack.Navigator",
       "      screenOptions={{",
+      "        headerTitleAlign: 'center',",
       "        headerStyle: {",
       "          backgroundColor: theme.background,",
       "        },",

@@ -9,6 +9,7 @@ export default function HomeStackScreens() {
   return (
     <ProfileStack.Navigator
       screenOptions={{
+        headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: theme.background,
         },

@@ -4,10 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import AppLinkingConfiguration from './Main.linkingConfiguration';
 import { radiusSizes, relativeY } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { tabs } from './tabs';
 import TabSlider from './components/TabSlider.animated';
 import TabButton from './components/TabButton.animated';
+import shadowStyles from '@styles/Shadow.style';
 
 const BottomTab = createBottomTabNavigator<MainBottomTabParamList>();
 function EmptyComponent() {
@@ -24,8 +25,8 @@ export default function MainBottomTabNavigator() {
         screenOptions={{
           headerShown: false,
           tabBarStyle: [
-            styles.tabBarStyles,
             { backgroundColor: theme.background },
+            styles.tabBarStyles,
           ],
         }}>
         <BottomTab.Screen
@@ -61,12 +62,14 @@ export default function MainBottomTabNavigator() {
 
 const styles = StyleSheet.create({
   tabBarStyles: {
-    borderTopRightRadius: radiusSizes.curvy,
-    borderTopLeftRadius: radiusSizes.curvy,
-    shadowOffset: { width: 0, height: -relativeY(1.5) },
-    shadowColor: 'black',
-    shadowOpacity: 0.07,
-    shadowRadius: 21,
+    // !? Shadow direction not supported on android
+    // uncomment following lines to remove line ontop of navigator
+    // ...shadowStyles({
+    //   shadowRadius: 0,
+    //   shadowOpacity: 0,
+    //   shadowOffset: { height: 0, width: 0 },
+    // }),
+    // borderTopWidth: 0,
     paddingBottom: relativeY(2.5),
     height: relativeY(8),
     position: 'absolute',
