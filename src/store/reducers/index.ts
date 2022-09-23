@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import templateReducer from './template.reducer';
+import appReducer from './app.reducer';
 
-const reducers = combineReducers({ template: templateReducer });
+const reducers = combineReducers({ app: appReducer });
 
 export type State = ReturnType<typeof reducers>;
 

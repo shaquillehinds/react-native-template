@@ -1,0 +1,5 @@
+export enum AppActionType {
+  SET_FIRST_DOWNLOAD = 'SET_FIRST_DOWNLOAD',
+  SET_LOADED = 'SET_LOADED',
+  SET_THEME = 'SET_THEME',
+}

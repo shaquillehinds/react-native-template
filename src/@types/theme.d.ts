@@ -1,4 +1,4 @@
-type AppTheme = 'DEFAULT';
+type AppTheme = 'DEFAULT' | 'DEFAULT_DARK';
 
 interface AppColors {
   primary: Colors;

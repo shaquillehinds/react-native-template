@@ -1,5 +1,5 @@
-interface TemplateState {
-  error: string | null;
-  loading: boolean;
-  templates: string[];
+interface AppState {
+  firstDownload: boolean;
+  loaded: boolean;
+  theme?: AppTheme;
 }

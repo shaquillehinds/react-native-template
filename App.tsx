@@ -1,41 +1,40 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
-import AppProvider from 'App.Provider';
-import { loadAsync } from 'expo-font';
-import MainBottomTabNavigator from '@navigators/bottomtab/main/Main.tab.navigator';
+import { hideAsync } from 'expo-splash-screen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import AppProvider from 'App.Provider';
+import MainBottomTabNavigator from '@navigators/bottomtab/main/Main.tab.navigator';
+import { store } from '@store/index';
+import useFonts from '@hooks/useFonts';
+import { theme } from '@utils/themes';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const [loadingComplete, setLoadingComplete] = useState(false);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? '#111' : '#FFF',
+  const { loaded } = useFonts(store, isDarkMode);
+
+  const styles = {
+    gestureHandler: { flex: 1 },
+    safeArea: {
+      backgroundColor: theme.background,
+    },
   };
-  loadAsync({
-    Poppins: require('@assets/fonts/Poppins-Regular.ttf'),
-    PoppinsMedium: require('@assets/fonts/Poppins-Medium.ttf'),
-    PoppinsSemiBold: require('@assets/fonts/Poppins-SemiBold.ttf'),
-    PoppinsBold: require('@assets/fonts/Poppins-Bold.ttf'),
-    PoppinsItalic: require('@assets/fonts/Poppins-Italic.ttf'),
-    'Material Design Icons': require('@assets/fonts/MaterialCommunityIcons.ttf'),
-    Ionicons: require('@assets/fonts/Ionicons.ttf'),
-  }).then(() => setLoadingComplete(true));
+
+  if (!loaded) return <></>;
+
+  setTimeout(() => hideAsync(), 300);
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaView style={backgroundStyle} />
+    <GestureHandlerRootView style={styles.gestureHandler}>
+      <SafeAreaView style={styles.safeArea} />
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        barStyle={theme.mode === 'dark' ? 'light-content' : 'dark-content'}
+        backgroundColor={styles.safeArea.backgroundColor}
       />
-      {loadingComplete ? (
-        <AppProvider>
-          <MainBottomTabNavigator />
-        </AppProvider>
-      ) : (
-        <></>
-      )}
+      <AppProvider store={store}>
+        <MainBottomTabNavigator />
+      </AppProvider>
     </GestureHandlerRootView>
   );
 };

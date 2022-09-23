@@ -1,1 +1,1 @@
-export * from '@store/actions/template.action';
+export * from '@store/actions/app.action';

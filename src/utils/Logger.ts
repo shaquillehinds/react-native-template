@@ -11,9 +11,9 @@ import CONFIG from '@configuration';
 export function Logger(input: any[], source = 'Logger') {
   if (CONFIG.mode !== 'prod') {
     if (input[0] === 'warn') {
-      console.warn(source + ': ', ...input);
+      console.warn(source + ': ', ...input.slice(1));
     } else if (input[0] === 'error') {
-      console.error(source + ': ', ...input);
+      console.error(source + ': ', ...input.slice(1));
     } else {
       console.log(source + ': ', ...input);
     }

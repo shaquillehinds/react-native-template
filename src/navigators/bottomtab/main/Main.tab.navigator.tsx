@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AppLinkingConfiguration from './Main.linkingConfiguration';
 import { radiusSizes, relativeY } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { tabs } from './tabs';
 import TabSlider from './components/TabSlider.animated';
 import TabButton from './components/TabButton.animated';
@@ -23,10 +23,16 @@ export default function MainBottomTabNavigator() {
         sceneContainerStyle={{ backgroundColor: theme.background }}
         screenOptions={{
           headerShown: false,
-          tabBarStyle: styles.tabBarStyles,
+          tabBarStyle: [
+            styles.tabBarStyles,
+            { backgroundColor: theme.background },
+          ],
         }}>
         <BottomTab.Screen
-          options={{ tabBarButton: props => <TabSlider index={tabIndex} /> }}
+          options={{
+            tabBarButton: props => <TabSlider index={tabIndex} />,
+            headerShown: false,
+          }}
           listeners={{ tabPress: e => e.preventDefault() }}
           name="Slider"
           component={EmptyComponent}
@@ -55,15 +61,14 @@ export default function MainBottomTabNavigator() {
 
 const styles = StyleSheet.create({
   tabBarStyles: {
-    // borderTopRightRadius: radiusSizes.curvy,
-    // borderTopLeftRadius: radiusSizes.curvy,
+    borderTopRightRadius: radiusSizes.curvy,
+    borderTopLeftRadius: radiusSizes.curvy,
     shadowOffset: { width: 0, height: -relativeY(1.5) },
     shadowColor: 'black',
     shadowOpacity: 0.07,
     shadowRadius: 21,
-    backgroundColor: theme.background,
     paddingBottom: relativeY(2.5),
     height: relativeY(8),
-    position: 'relative',
+    position: 'absolute',
   },
 });

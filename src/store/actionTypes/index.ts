@@ -1,1 +1,1 @@
-export * from './template.actionTypes';
+export * from './app.actionTypes';

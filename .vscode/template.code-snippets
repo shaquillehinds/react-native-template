@@ -91,12 +91,23 @@
     "body": [
       "import React from 'react';",
       "import { createStackNavigator } from '@react-navigation/stack';",
+      "import { theme } from '@utils/themes';",
       "",
       "const ${TM_FILENAME_BASE/\\..*//}Stack = createStackNavigator<${TM_FILENAME_BASE/\\..*//}StackParamList>();",
       "",
       "export default function ${TM_FILENAME_BASE/\\..*//}StackScreens() {",
       "  return (",
-      "    <${TM_FILENAME_BASE/\\..*//}Stack.Navigator initialRouteName=\"Default\" id=\"${TM_FILENAME_BASE/\\..*//}Stack\">",
+      "    <${TM_FILENAME_BASE/\\..*//}Stack.Navigator",
+      "      screenOptions={{",
+      "        headerStyle: {",
+      "          backgroundColor: theme.background,",
+      "        },",
+      "        headerTitleStyle: {",
+      "          color: theme.typeface.primary,",
+      "        },",
+      "      }}",
+      "      initialRouteName=\"Default\"",
+      "      id=\"${TM_FILENAME_BASE/\\..*//}Stack\">",
       "       <${TM_FILENAME_BASE/\\..*//}Stack.Screen name=\"Default\" component={$1} />",
       "    </${TM_FILENAME_BASE/\\..*//}Stack.Navigator>",
       "  );",
@@ -188,6 +199,22 @@
       ""
     ],
     "description": "Creates a new reanimated effect"
+  },
+  "Create Action Creator": {
+    "prefix": "acr",
+    "body": [
+      "import { Dispatch } from \"redux\";",
+      "import { ${TM_DIRECTORY/.*\\/(.)/${1:/upcase}/}Action} from \"@store/actions\";",
+      "import { ${TM_DIRECTORY/.*\\/(.)/${1:/upcase}/}ActionType } from \"@store/actionTypes\";",
+      "",
+      "export default function ${TM_FILENAME_BASE/\\..*//}(){",
+      "  return async function (dispatch: Dispatch<${TM_DIRECTORY/.*\\/(.)/${1:/upcase}/}Action>){",
+      "    $1",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "Create Action Creator"
   },
   "New stylesheet": {
     "prefix": "sty",

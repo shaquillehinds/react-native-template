@@ -62,8 +62,8 @@ export const buttonSizes: {
   };
 } = {
   small: {
-    paddingHorizontal: relativeX(12),
-    paddingVertical: relativeY(0.5),
+    paddingHorizontal: relativeX(11),
+    paddingVertical: relativeY(0.6),
     fontSize: 'bodyS',
     borderRadius: 'medium',
   },
