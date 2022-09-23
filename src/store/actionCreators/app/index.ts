@@ -1,3 +1,5 @@
 import loadApp from './loadApp.actionCreator';
+import setDrawerLockMode from './setDrawerLockMode.actionCreator';
+import setDrawerRef from './setDrawerRef.actionCreator';
 
-export { loadApp };
+export { loadApp, setDrawerLockMode, setDrawerRef };

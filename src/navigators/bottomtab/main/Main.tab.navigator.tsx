@@ -4,11 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import AppLinkingConfiguration from './Main.linkingConfiguration';
 import { radiusSizes, relativeY } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
-import { StyleSheet } from 'react-native';
-import { tabs } from './tabs';
+import { StyleSheet, View } from 'react-native';
+import { tabs } from './Main.tabs';
 import TabSlider from './components/TabSlider.animated';
 import TabButton from './components/TabButton.animated';
 import shadowStyles from '@styles/Shadow.style';
+import { DrawerLayoutProvider } from '@components/layouts/Drawer';
 
 const BottomTab = createBottomTabNavigator<MainBottomTabParamList>();
 function EmptyComponent() {
@@ -19,6 +20,10 @@ export default function MainBottomTabNavigator() {
   const [tabIndex, setTabIndex] = useState(0);
   return (
     <NavigationContainer linking={AppLinkingConfiguration}>
+      {/** !? uncomment the comment lines below to enable drawer */}
+      {/* <DrawerLayoutProvider
+        drawerBackgroundColor={theme.background}
+        renderDrawerContentComponent={() => <View />}> */}
       <BottomTab.Navigator
         initialRouteName="Home"
         sceneContainerStyle={{ backgroundColor: theme.background }}
@@ -56,6 +61,7 @@ export default function MainBottomTabNavigator() {
           );
         })}
       </BottomTab.Navigator>
+      {/* </DrawerLayoutProvider> */}
     </NavigationContainer>
   );
 }

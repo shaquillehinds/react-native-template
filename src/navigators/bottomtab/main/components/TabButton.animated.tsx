@@ -14,7 +14,7 @@ import {
 import { theme } from '@utils/themes';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
-import { tabs } from '../tabs';
+import { tabs } from '../Main.tabs';
 import { DebugLogger } from '@utils/Logger';
 import { useIsFocused } from '@react-navigation/native';
 import { Body } from '@components/typography';

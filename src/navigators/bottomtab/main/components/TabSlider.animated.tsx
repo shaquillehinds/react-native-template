@@ -7,7 +7,7 @@ import {
 import { theme } from '@utils/themes';
 import { PropsWithChildren, useEffect, useRef } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
-import { tabs } from '../tabs';
+import { tabs } from '../Main.tabs';
 import { DebugLogger } from '@utils/Logger';
 
 const log = DebugLogger('TabSlider.tsx');
