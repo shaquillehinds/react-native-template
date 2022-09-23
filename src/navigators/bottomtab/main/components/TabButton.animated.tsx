@@ -6,26 +6,25 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   relativeX,
   relativeY,
   SCREEN_WIDTH,
 } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 import { tabs } from '../Main.tabs';
 import { DebugLogger } from '@utils/Logger';
 import { useIsFocused } from '@react-navigation/native';
 import { Body } from '@components/typography';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const log = DebugLogger('TabButton.animated.tsx');
 
 export interface TabButtonProps extends BottomTabBarButtonProps {
   name: keyof MainBottomTabParamList;
   label: string;
-  type: typeof MaterialCommunityIcons;
+  type: typeof Ionicons;
   activeIcon: string;
   inActiveIcon: string;
 }
@@ -91,7 +90,7 @@ export default function TabButton(props: PropsWithChildren<TabButtonProps>) {
         ]}>
         <props.type
           name={isFocused ? props.activeIcon : props.inActiveIcon}
-          size={props.name === 'Settings' ? relativeY(2.8) : relativeY(3.4)}
+          size={relativeY(2.8)}
           color={isFocused ? theme.primary.dark : theme.typeface.tertiary}
         />
       </Animated.View>

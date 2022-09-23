@@ -16,7 +16,6 @@ function useFonts(store: Store, isDarkMode: boolean) {
         PoppinsSemiBold: require('@assets/fonts/Poppins-SemiBold.ttf'),
         PoppinsBold: require('@assets/fonts/Poppins-Bold.ttf'),
         PoppinsItalic: require('@assets/fonts/Poppins-Italic.ttf'),
-        'Material Design Icons': require('@assets/fonts/MaterialCommunityIcons.ttf'),
         Ionicons: require('@assets/fonts/Ionicons.ttf'),
       });
       // !? loadApp: Loads all cached resources
