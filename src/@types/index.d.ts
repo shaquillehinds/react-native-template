@@ -1,6 +1,6 @@
 type BorderSize = 'razor' | 'thin' | 'medium' | 'large';
 type RadiusSize = 'edgy' | 'sharp' | 'medium' | 'soft' | 'curvy' | 'round';
-type ButtonSize = 'small' | 'large' | 'medium';
+type ButtonSize = 'small' | 'large' | 'medium' | 'auto' | 'wide';
 
 type FontStyle =
   | 'Poppins'

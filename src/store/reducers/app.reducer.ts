@@ -10,6 +10,7 @@ const initialState: AppState = {
   loaded: false,
   theme: 'DEFAULT',
   drawerLockMode: 'unlocked',
+  isBotNavVisible: true,
 };
 
 const appReducer = (state = initialState, action: AppAction): AppState => {
@@ -25,6 +26,8 @@ const appReducer = (state = initialState, action: AppAction): AppState => {
       return { ...state, drawerRef: action.payload };
     case AppActionType.SET_DRAWER_LOCK_MODE:
       return { ...state, drawerLockMode: action.payload };
+    case AppActionType.SET_BOT_NAV_VIS:
+      return { ...state, isBotNavVisible: action.payload };
     default:
       return state;
   }

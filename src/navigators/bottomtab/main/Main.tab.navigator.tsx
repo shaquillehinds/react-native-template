@@ -10,6 +10,7 @@ import TabSlider from './components/TabSlider.animated';
 import TabButton from './components/TabButton.animated';
 import shadowStyles from '@styles/Shadow.style';
 import { DrawerLayoutProvider } from '@components/layouts/Drawer';
+import { useTypedSelector } from '@hooks/useTypedSelector';
 
 const BottomTab = createBottomTabNavigator<MainBottomTabParamList>();
 function EmptyComponent() {
@@ -18,6 +19,7 @@ function EmptyComponent() {
 
 export default function MainBottomTabNavigator() {
   const [tabIndex, setTabIndex] = useState(0);
+  const isNavVisible = useTypedSelector(state => state.app.isBotNavVisible);
   return (
     <NavigationContainer linking={AppLinkingConfiguration}>
       {/** !? uncomment the comment lines below to enable drawer */}
@@ -30,7 +32,10 @@ export default function MainBottomTabNavigator() {
         screenOptions={{
           headerShown: false,
           tabBarStyle: [
-            { backgroundColor: theme.background },
+            {
+              backgroundColor: theme.background,
+              display: isNavVisible ? 'flex' : 'none',
+            },
             styles.tabBarStyles,
           ],
         }}>

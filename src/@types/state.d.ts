@@ -7,4 +7,5 @@ interface AppState {
   theme?: AppTheme;
   drawerRef?: React.RefObject<DrawerLayout>;
   drawerLockMode: DrawerLockMode;
+  isBotNavVisible: boolean;
 }

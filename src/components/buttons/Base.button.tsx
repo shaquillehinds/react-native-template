@@ -18,6 +18,8 @@ export default function BaseButton(props: PropsWithChildren<ButtonProps>) {
     paddingHorizontal: sizes.paddingHorizontal,
     paddingVertical: sizes.paddingVertical,
     borderRadius: radiusSizes[sizes.borderRadius],
+    width: sizes.width,
+    alignItems: 'center',
     backgroundColor: props.backgroundColor || theme.primary.button.background,
   };
   const ViewComponent = props.animate
@@ -26,6 +28,7 @@ export default function BaseButton(props: PropsWithChildren<ButtonProps>) {
   return (
     <TouchableOpacity
       activeOpacity={props.activeOpacity || 0.8}
+      style={{ width: configuredStyles.width }}
       onPress={props.onPress}
       onPressIn={props.onPressIn}
       onPressOut={props.onPressOut}>

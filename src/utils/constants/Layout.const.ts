@@ -59,6 +59,7 @@ export const buttonSizes: {
     paddingVertical: number;
     fontSize: FontSize;
     borderRadius: RadiusSize;
+    width?: number | string;
   };
 } = {
   small: {
@@ -78,5 +79,19 @@ export const buttonSizes: {
     paddingVertical: relativeY(1.5),
     fontSize: 'titleL',
     borderRadius: 'curvy',
+  },
+  wide: {
+    paddingHorizontal: relativeX(18),
+    paddingVertical: relativeY(1.5),
+    fontSize: 'titleL',
+    borderRadius: 'curvy',
+    width: relativeX(85),
+  },
+  auto: {
+    paddingHorizontal: relativeX(18),
+    paddingVertical: relativeY(1.5),
+    fontSize: 'titleL',
+    borderRadius: 'curvy',
+    width: '100%',
   },
 };

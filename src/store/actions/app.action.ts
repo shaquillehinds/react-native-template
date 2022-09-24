@@ -24,9 +24,15 @@ interface SetDrawerLockMode {
   payload: DrawerLockMode;
 }
 
+interface SetBotNavVis {
+  type: AppActionType.SET_BOT_NAV_VIS;
+  payload: boolean;
+}
+
 export type AppAction =
   | SetFirstDownloadAction
   | SetLoaded
   | SetTheme
   | SetDrawerRef
-  | SetDrawerLockMode;
+  | SetDrawerLockMode
+  | SetBotNavVis;
