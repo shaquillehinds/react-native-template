@@ -1,0 +1,125 @@
+#!/usr/local/bin/node
+
+const { readFileSync, readdirSync, writeFileSync, mkdirSync } = require("fs");
+
+const location = process.argv[2];
+const dir = process.argv[3];
+const nameHash = {};
+
+if (dir) {
+  try {
+    mkdirSync("./" + dir);
+  } catch (error) {
+    console.warn(error);
+  }
+  readdirSync(location).forEach((file) => {
+    if (!file.includes(".svg")) return;
+    svgToRNSVG(`${location}/${file}`, nameHash);
+    // console.log(file);
+  });
+}
+
+function svgToRNSVG(location, nameHash) {
+  if (!location) throw new Error("No file given");
+  else if (!location.includes(".svg")) throw new Error("not an svg");
+
+  const svgFile = readFileSync(location, { encoding: "utf-8" });
+
+  let formattedFile = svgFile
+    .replace(/<./g, (e) => e.toUpperCase())
+    .replace(/-./g, (e) => e[1].toUpperCase())
+    .replace(/xmlns.+"/, "")
+    .replace(/stroke=".+"/g, (e) =>
+      !e.includes("none") ? e.replace(/".+"/, "{color || '#000'}") : e
+    )
+    .replace(/fill=".+"/g, (e) =>
+      !e.includes("none") ? e.replace(/".+"/, "{color || '#000'}") : e
+    )
+    .replace("/svg", "/Svg");
+
+  function getDimension(i, type) {
+    if (i !== -1) {
+      if (type === "height") i += 8;
+      else i += 7;
+      let hString = formattedFile.substring(i, i + 8);
+      let notANumber = true;
+      while (notANumber) {
+        hString = hString.slice(0, hString.length - 1);
+        if (!isNaN(hString)) {
+          notANumber = false;
+          break;
+        }
+      }
+      return parseInt(hString);
+    }
+    return 0;
+  }
+
+  let index = formattedFile.search(/height=".+"/);
+  const height = getDimension(index, "height");
+  let index2 = formattedFile.search(/width=".+"/);
+  const width = getDimension(index2, "width");
+
+  formattedFile = formattedFile
+    .replace(/height="\w+"/, (e) =>
+      height === width
+        ? e.replace(/".+"/, "{normalize(size || " + height + ")}")
+        : e.replace(
+            /".+"/,
+            `{normalize(size ${
+              height > width
+                ? "|| " + height
+                : "? size * " + height / width + " : " + height
+            })}`
+          )
+    )
+    .replace(/width="\w+"/, (e) =>
+      height === width
+        ? e.replace(/".+"/, "{normalize(size || " + width + ")}")
+        : e.replace(
+            /".+"/,
+            `{normalize(size ${
+              width > height
+                ? "|| " + width
+                : "? size * " + width / height + " : " + width
+            })}`
+          )
+    );
+
+  let imports = "";
+  const importHash = {};
+  formattedFile
+    .match(/<\w+/g)
+    .slice(1)
+    .forEach((item) => {
+      const im = item.slice(1);
+      if (!importHash[im]) imports += `${im},`;
+      importHash[im] = true;
+    });
+
+  const template = readFileSync("/Users/shaquillehinds/bin/svg-template", {
+    encoding: "utf-8",
+  });
+
+  const split = location.split("/");
+  let name = split[split.length - 1].replace(/(^\d|\W|svg)/g, "");
+  if (nameHash[name]) name += "0";
+  nameHash[name] = true;
+
+  let rnSVG = template
+    .replace("<name>", name)
+    .replace("<svg>", formattedFile)
+    .replace("<imports>", imports);
+
+  // console.log(rnSVG);
+  // console.log(height, width, name);
+  writeFileSync(
+    "./" + (dir || "react-native-svgs") + "/" + name + ".tsx",
+    rnSVG,
+    {
+      encoding: "utf-8",
+    }
+  );
+
+  return rnSVG;
+}

@@ -1,0 +1,15 @@
+import React from 'react';
+import Svg, {
+  <imports>
+} from 'react-native-svg';
+import { normalize } from '@utils/constants/Layout.const';
+
+export default function <name>({
+  size,
+  color,
+}: {
+  size?: number;
+  color?: string;
+}) {
+  return (<svg>);
+}

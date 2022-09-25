@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   relativeX,
   relativeY,
@@ -14,19 +13,19 @@ import {
 } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
 import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
-import { tabs } from '../Main.tabs';
+import { Tab, tabs } from '../Main.tabs';
 import { DebugLogger } from '@utils/Logger';
 import { useIsFocused } from '@react-navigation/native';
 import { Body } from '@components/typography';
+import User from '@components/svgs/filled/User';
+import Profile from '@components/svgs/outline/Profile';
+import FilledProfile from '@components/svgs/filled/Profile';
 
 const log = DebugLogger('TabButton.animated.tsx');
 
-export interface TabButtonProps extends BottomTabBarButtonProps {
+export interface TabButtonProps extends BottomTabBarButtonProps, Tab {
   name: keyof MainBottomTabParamList;
   label: string;
-  type: typeof Ionicons;
-  activeIcon: string;
-  inActiveIcon: string;
 }
 
 export default function TabButton(props: PropsWithChildren<TabButtonProps>) {
@@ -88,11 +87,11 @@ export default function TabButton(props: PropsWithChildren<TabButtonProps>) {
             ],
           },
         ]}>
-        <props.type
-          name={isFocused ? props.activeIcon : props.inActiveIcon}
-          size={relativeY(2.8)}
-          color={isFocused ? theme.primary.dark : theme.typeface.tertiary}
-        />
+        {isFocused ? (
+          <props.iconFilled color={theme.primary.dark} size={30} />
+        ) : (
+          <props.icon color={theme.typeface.tertiary} size={30} />
+        )}
       </Animated.View>
       <Animated.View style={[{ transform }]}>
         <Body
