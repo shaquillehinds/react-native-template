@@ -69,7 +69,9 @@ buck-out/
 
 *.env
 *testingJSON.json
-testingJS.js
+testingJS.js*
+testingTS.ts*
+testing.session.sql
 
 *.test.log
 /android/gradle.properties
