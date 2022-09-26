@@ -1,7 +1,7 @@
 import React from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import ScreenLayout from '@components/layouts/Screen.layout';
-import { BlurView } from 'expo-blur';
+import { BlurView } from '@react-native-community/blur';
 import { Heading } from '@components/typography';
 import {
   isIOS,
@@ -15,32 +15,51 @@ export default function NoInternetScreen({ darkMode }: { darkMode: boolean }) {
   return (
     <ScreenLayout>
       <ImageBackground
-        source={isIOS ? require('@assets/gifs/nointernetbackdrop.gif') : ''}
+        source={require('@assets/gifs/nointernetbackdrop.gif')}
         style={[
           styles.fullScreen,
           { backgroundColor: darkMode ? '#222' : '#FFF' },
         ]}
         resizeMode="cover">
-        <BlurView
-          style={[styles.fullScreen, styles.textContainer]}
-          intensity={50}
-          tint={'dark'}>
-          <Heading customColor={isIOS || darkMode ? 'white' : 'black'}>
-            No Internet Access
-          </Heading>
-          <SvgFromXml
-            xml={internet}
-            width="90%"
-            height="40%"
-            opacity={isIOS ? 0.5 : 1}
-          />
+        <BlurView style={styles.textContainer} blurAmount={10} blurType="dark">
+          {isIOS ? (
+            <>
+              <Heading style={{ alignSelf: 'center' }} customColor={'white'}>
+                No Internet Access
+              </Heading>
+              <SvgFromXml
+                xml={internet}
+                width="90%"
+                height="40%"
+                opacity={0.5}
+              />
+            </>
+          ) : undefined}
         </BlurView>
+        {isIOS ? undefined : (
+          <View style={styles.textContainer}>
+            <Heading style={{ alignSelf: 'center' }} customColor={'white'}>
+              No Internet Access
+            </Heading>
+            <SvgFromXml xml={internet} width="90%" height="40%" opacity={0.5} />
+          </View>
+        )}
       </ImageBackground>
     </ScreenLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  fullScreen: { width: SCREEN_WIDTH, height: SCREEN_HEIGHT },
-  textContainer: { justifyContent: 'center', alignItems: 'center' },
+  fullScreen: {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+  },
+
+  textContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+    position: 'absolute',
+  },
 });

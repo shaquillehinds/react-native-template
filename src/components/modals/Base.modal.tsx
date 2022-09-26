@@ -1,19 +1,33 @@
 import { useActions } from '@hooks/useActions';
 import {
+  isIOS,
   normalize,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
 } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
-import { BlurView } from 'expo-blur';
-import React, { useCallback } from 'react';
+import { BlurView, VibrancyView } from '@react-native-community/blur';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import Modal from 'react-native-modal';
+import { DebugLogger } from '@utils/Logger';
+
+const log = DebugLogger('Base.modal.tsx');
 
 export default function BaseModal(
   props: React.PropsWithChildren<ConfirmModalProps>,
 ) {
   const { setBotNavVis } = useActions();
+
+  const [blurType, setBlurType] = useState<'light' | 'dark'>('dark');
+
+  useEffect(() => {
+    if (props.show) {
+      setBlurType('dark');
+    } else {
+      setBlurType('light');
+    }
+  }, [props.show]);
 
   const modalCloseHandler = useCallback(() => {
     props.setShow(false);
@@ -34,12 +48,23 @@ export default function BaseModal(
       isVisible={props.show}
       swipeDirection={'down'}
       customBackdrop={
-        <BlurView
-          onTouchEnd={onBackdropPress}
-          intensity={10}
-          style={styles.backdrop}
-          tint={'dark'}
-        />
+        isIOS ? (
+          <VibrancyView
+            blurAmount={2}
+            reducedTransparencyFallbackColor="black"
+            blurType={blurType}
+            onTouchEnd={onBackdropPress}
+            style={styles.backdrop}
+          />
+        ) : (
+          <BlurView
+            onTouchEnd={onBackdropPress}
+            reducedTransparencyFallbackColor="black"
+            style={styles.backdrop}
+            blurAmount={1}
+            blurRadius={1}
+          />
+        )
       }
       onModalWillShow={onModalWillShow}
       onSwipeComplete={onSwipeComplete}

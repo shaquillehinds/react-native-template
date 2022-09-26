@@ -11,7 +11,6 @@ import {
   relativeY,
   SCREEN_WIDTH,
 } from '@utils/constants/Layout.const';
-import { BlurView } from 'expo-blur';
 import BottomSheet, { SCREEN_HEIGHT } from '@gorhom/bottom-sheet';
 
 export default function HomeScreen(
@@ -44,7 +43,6 @@ export default function HomeScreen(
         </ButtonAnimated>
       </BaseModal>
       {/* <View style={styles.transparent} /> */}
-      {/* <BlurView intensity={10} tint="dark" style={styles.transparent}/> */}
     </ScreenLayout>
   );
 }
