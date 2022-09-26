@@ -5,6 +5,7 @@ import {
   SCREEN_WIDTH,
 } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
+import { BlurView } from 'expo-blur';
 import React, { useCallback } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import Modal from 'react-native-modal';
@@ -27,11 +28,19 @@ export default function BaseModal(
     <Modal
       coverScreen={false}
       deviceHeight={SCREEN_HEIGHT}
-      style={{ margin: 0, zIndex: 10000 }}
+      style={{ margin: 0 }}
       hideModalContentWhileAnimating
-      backdropOpacity={0.15}
+      backdropOpacity={1}
       isVisible={props.show}
       swipeDirection={'down'}
+      customBackdrop={
+        <BlurView
+          onTouchEnd={onBackdropPress}
+          intensity={10}
+          style={styles.backdrop}
+          tint={'dark'}
+        />
+      }
       onModalWillShow={onModalWillShow}
       onSwipeComplete={onSwipeComplete}
       onBackdropPress={onBackdropPress}
@@ -76,6 +85,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: normalize(10),
     marginBottom: normalize(20),
+  },
+  backdrop: {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+    // zIndex: 10,
+    // position: 'absolute',
+    // backgroundColor: 'rgba(0,0,0,.4)',
   },
 });
 

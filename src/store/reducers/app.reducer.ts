@@ -11,6 +11,7 @@ const initialState: AppState = {
   theme: 'DEFAULT',
   drawerLockMode: 'unlocked',
   isBotNavVisible: true,
+  internetAccess: true,
 };
 
 const appReducer = (state = initialState, action: AppAction): AppState => {
@@ -28,6 +29,8 @@ const appReducer = (state = initialState, action: AppAction): AppState => {
       return { ...state, drawerLockMode: action.payload };
     case AppActionType.SET_BOT_NAV_VIS:
       return { ...state, isBotNavVisible: action.payload };
+    case AppActionType.SET_INTERNET_ACCESS:
+      return { ...state, internetAccess: action.payload };
     default:
       return state;
   }

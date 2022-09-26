@@ -29,10 +29,16 @@ interface SetBotNavVis {
   payload: boolean;
 }
 
+interface SetInternetAccess {
+  type: AppActionType.SET_INTERNET_ACCESS;
+  payload: boolean;
+}
+
 export type AppAction =
   | SetFirstDownloadAction
   | SetLoaded
   | SetTheme
   | SetDrawerRef
   | SetDrawerLockMode
-  | SetBotNavVis;
+  | SetBotNavVis
+  | SetInternetAccess;

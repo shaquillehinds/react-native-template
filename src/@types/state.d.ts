@@ -3,6 +3,7 @@ type DrawerLockMode = 'locked-closed' | 'locked-open' | 'unlocked';
 
 interface AppState {
   firstDownload: boolean;
+  internetAccess: boolean;
   loaded: boolean;
   theme?: AppTheme;
   drawerRef?: React.RefObject<DrawerLayout>;

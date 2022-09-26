@@ -8,6 +8,7 @@ import MainBottomTabNavigator from '@navigators/bottomtab/main/Main.tab.navigato
 import { store } from '@store/index';
 import useFonts from '@hooks/useFonts';
 import { theme } from '@utils/themes';
+import NoInternetScreen from '@screens/global/NoInternet.screen';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -24,6 +25,9 @@ const App = () => {
   if (!loaded) return <></>;
 
   setTimeout(() => hideAsync(), 300);
+
+  if (!store.getState().app.internetAccess)
+    return <NoInternetScreen darkMode={isDarkMode} />;
 
   return (
     <GestureHandlerRootView style={styles.gestureHandler}>
