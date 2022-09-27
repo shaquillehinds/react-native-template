@@ -6,7 +6,7 @@ interface AppState {
   internetAccess: boolean;
   loaded: boolean;
   theme?: AppTheme;
-  drawerRef?: React.RefObject<DrawerLayout>;
+  drawerRef: React.RefObject<DrawerLayout>;
   drawerLockMode: DrawerLockMode;
   isBotNavVisible: boolean;
 }

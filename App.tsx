@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
 import { hideAsync } from 'expo-splash-screen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AppProvider from 'App.Provider';
@@ -31,7 +31,6 @@ const App = () => {
 
   return (
     <GestureHandlerRootView style={styles.gestureHandler}>
-      <SafeAreaView style={styles.safeArea} />
       <StatusBar
         barStyle={theme.mode === 'dark' ? 'light-content' : 'dark-content'}
         backgroundColor={styles.safeArea.backgroundColor}

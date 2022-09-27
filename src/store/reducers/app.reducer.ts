@@ -12,6 +12,7 @@ const initialState: AppState = {
   drawerLockMode: 'unlocked',
   isBotNavVisible: true,
   internetAccess: true,
+  drawerRef: { current: null },
 };
 
 const appReducer = (state = initialState, action: AppAction): AppState => {

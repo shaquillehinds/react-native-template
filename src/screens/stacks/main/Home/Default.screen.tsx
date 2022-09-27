@@ -12,12 +12,19 @@ import {
   SCREEN_WIDTH,
 } from '@utils/constants/Layout.const';
 import BottomSheet, { SCREEN_HEIGHT } from '@gorhom/bottom-sheet';
+import { useTypedSelector } from '@hooks/useTypedSelector';
 
 export default function HomeScreen(
   // MainNavationtionProps.{Name of stack}<{Name of screen}>
   props: MainNavigationProps.Home<'Default'>,
 ) {
   const [show, setShow] = useState(false);
+  const drawer = useTypedSelector(state => state.app.drawerRef);
+
+  const openDrawer = () => {
+    if (drawer?.current) drawer.current.openDrawer();
+    else console.warn(drawer);
+  };
 
   // const ref = useRef<BottomSheet>(null);
   return (
@@ -25,7 +32,10 @@ export default function HomeScreen(
       <ButtonAnimated buttonType="primary" buttonSize="small">
         Button
       </ButtonAnimated>
-      <ButtonAnimated buttonType="primary" buttonSize="medium">
+      <ButtonAnimated
+        onPress={openDrawer}
+        buttonType="primary"
+        buttonSize="medium">
         Button
       </ButtonAnimated>
       <ButtonAnimated
