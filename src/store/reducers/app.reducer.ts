@@ -32,6 +32,8 @@ const appReducer = (state = initialState, action: AppAction): AppState => {
       return { ...state, isBotNavVisible: action.payload };
     case AppActionType.SET_INTERNET_ACCESS:
       return { ...state, internetAccess: action.payload };
+    case AppActionType.SET_RE_DRAWER:
+      return { ...state, reDrawer: action.payload };
     default:
       return state;
   }

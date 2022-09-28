@@ -1,3 +1,4 @@
+import { ReDrawer } from '@components/layouts/ReDrawer/ReDrawer.layout';
 import { AppActionType } from '@store/actionTypes';
 
 interface SetFirstDownloadAction {
@@ -34,6 +35,11 @@ interface SetInternetAccess {
   payload: boolean;
 }
 
+interface SetReDrawer {
+  type: AppActionType.SET_RE_DRAWER;
+  payload: ReDrawer;
+}
+
 export type AppAction =
   | SetFirstDownloadAction
   | SetLoaded
@@ -41,4 +47,5 @@ export type AppAction =
   | SetDrawerRef
   | SetDrawerLockMode
   | SetBotNavVis
-  | SetInternetAccess;
+  | SetInternetAccess
+  | SetReDrawer;

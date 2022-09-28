@@ -13,6 +13,7 @@ import {
 } from '@utils/constants/Layout.const';
 import BottomSheet, { SCREEN_HEIGHT } from '@gorhom/bottom-sheet';
 import { useTypedSelector } from '@hooks/useTypedSelector';
+import ReDrawer from '@components/layouts/ReDrawer';
 
 export default function HomeScreen(
   // MainNavationtionProps.{Name of stack}<{Name of screen}>
@@ -20,20 +21,18 @@ export default function HomeScreen(
 ) {
   const [show, setShow] = useState(false);
   const drawer = useTypedSelector(state => state.app.drawerRef);
-
-  const openDrawer = () => {
-    if (drawer?.current) drawer.current.openDrawer();
-    else console.warn(drawer);
-  };
-
+  const reDrawer = useTypedSelector(state => state.app.reDrawer);
   // const ref = useRef<BottomSheet>(null);
   return (
     <ScreenLayout center centerY>
-      <ButtonAnimated buttonType="primary" buttonSize="small">
+      <ButtonAnimated
+        onPress={reDrawer?.closeDrawer}
+        buttonType="primary"
+        buttonSize="small">
         Button
       </ButtonAnimated>
       <ButtonAnimated
-        onPress={openDrawer}
+        onPress={reDrawer?.openDrawer}
         buttonType="primary"
         buttonSize="medium">
         Button
@@ -54,6 +53,7 @@ export default function HomeScreen(
       </BaseModal>
       {/* <View style={styles.transparent} /> */}
     </ScreenLayout>
+    // </ReDrawerLayout>
   );
 }
 

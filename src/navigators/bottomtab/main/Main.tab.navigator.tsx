@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLinkingConfiguration from './Main.linkingConfiguration';
@@ -11,6 +11,9 @@ import TabButton from './components/TabButton.animated';
 import shadowStyles from '@styles/Shadow.style';
 import { DrawerLayoutProvider } from '@components/layouts/Drawer';
 import { useTypedSelector } from '@hooks/useTypedSelector';
+import ReDrawer from '@components/layouts/ReDrawer';
+import { useActions } from '@hooks/useActions';
+import { useSharedValue } from 'react-native-reanimated';
 
 const BottomTab = createBottomTabNavigator<MainBottomTabParamList>();
 function EmptyComponent() {
@@ -20,13 +23,22 @@ function EmptyComponent() {
 export default function MainBottomTabNavigator() {
   const [tabIndex, setTabIndex] = useState(0);
   const isNavVisible = useTypedSelector(state => state.app.isBotNavVisible);
+  const actions = useActions();
+  const trackingX = useSharedValue(0);
+  const translateX = useSharedValue(0);
+  const contextX = useSharedValue(0);
+  const Drawer = useMemo(
+    () => ReDrawer({ trackingX, translateX, contextX }),
+    [],
+  );
   return (
-    <NavigationContainer linking={AppLinkingConfiguration}>
-      {/* <SafeAreaView /> */}
-      {/** !? uncomment the comment lines below to enable drawer */}
-      <DrawerLayoutProvider
-        drawerBackgroundColor={theme.background}
-        renderDrawerContentComponent={() => <View />}>
+    <NavigationContainer
+      onReady={() => actions.setReDrawer(Drawer)}
+      linking={AppLinkingConfiguration}>
+      <Drawer.ReDrawerLayout
+        backgroundColor={theme.primary.dark}
+        drawerComponent={() => <View />}>
+        {/* <DrawerLayoutProvider renderDrawerContentComponent={() => <View />}> */}
         <BottomTab.Navigator
           initialRouteName="Home"
           sceneContainerStyle={{ backgroundColor: theme.background }}
@@ -67,7 +79,8 @@ export default function MainBottomTabNavigator() {
             );
           })}
         </BottomTab.Navigator>
-      </DrawerLayoutProvider>
+        {/* </DrawerLayoutProvider> */}
+      </Drawer.ReDrawerLayout>
     </NavigationContainer>
   );
 }

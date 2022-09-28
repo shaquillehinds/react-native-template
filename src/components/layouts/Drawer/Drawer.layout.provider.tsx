@@ -10,9 +10,11 @@ import { theme } from '@utils/themes';
 import Animated, {
   Easing,
   interpolate,
+  runOnUI,
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
+import shadowStyles from '@styles/Shadow.style';
 
 const log = DebugLogger('Drawer/LayoutProvider');
 
@@ -38,7 +40,9 @@ export default function DrawerLayoutProvider(props: DrawerProps) {
   const renderNavigationView = (progressValue: RNAnimated.Value) => {
     progressValue.removeAllListeners();
     progressValue.addListener(v => {
-      progress.value = v.value;
+      runOnUI(() => {
+        progress.value = v.value;
+      })();
       // log('warn', v.value);
       // scale.setValue(v.value);
     });
@@ -65,7 +69,6 @@ export default function DrawerLayoutProvider(props: DrawerProps) {
       },
     ],
   };
-
   return (
     <DrawerLayout
       ref={drawer}
@@ -79,7 +82,7 @@ export default function DrawerLayoutProvider(props: DrawerProps) {
       contentContainerStyle={{ backgroundColor: theme.primary.dark }}
       drawerContainerStyle={{ backgroundColor: theme.primary.dark }}
       drawerLockMode={drawerLockMode}>
-      <Animated.View style={scaleAnimated2}>
+      <Animated.View style={[shadowStyles(), scaleAnimated2]}>
         {/* <RNAnimated.View style={scaleAnimated}> */}
         <View
           style={[

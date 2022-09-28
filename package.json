@@ -31,6 +31,7 @@
     "axios": "^0.27.2",
     "events": "^3.3.0",
     "expo": "^46.0.0",
+    "expo-constants": "^13.2.4",
     "expo-font": "^10.2.0",
     "expo-splash-screen": "^0.16.2",
     "lottie-ios": "3.4.0",

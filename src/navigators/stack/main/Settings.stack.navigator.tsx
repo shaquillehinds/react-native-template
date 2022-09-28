@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import SettingsScreen from '@screens/stacks/main/Settings';
 import { theme } from '@utils/themes';
+import { statusBarHeight } from '@utils/constants/Layout.const';
 
 const SettingsStack = createStackNavigator<SettingsStackParamList>();
 
@@ -10,6 +11,7 @@ export default function SettingsStackScreens() {
     <SettingsStack.Navigator
       screenOptions={{
         headerTitleAlign: 'center',
+        headerStatusBarHeight: statusBarHeight,
         headerStyle: {
           backgroundColor: theme.background,
         },

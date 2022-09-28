@@ -4,13 +4,14 @@ import HomeScreen from '@screens/stacks/main/Home';
 import FeedScreen from '@screens/stacks/main/Home/Feed.screen';
 import SettingsScreen from '@screens/stacks/main/Home/Settings.screen';
 import { theme } from '@utils/themes';
+import { statusBarHeight } from '@utils/constants/Layout.const';
 
 const HomeStack = createStackNavigator<HomeStackParamList>();
-
 export default function HomeStackScreens() {
   return (
     <HomeStack.Navigator
       screenOptions={{
+        headerStatusBarHeight: statusBarHeight,
         headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: theme.background,

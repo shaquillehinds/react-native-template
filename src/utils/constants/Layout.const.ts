@@ -1,4 +1,5 @@
-import { Dimensions, PixelRatio, Platform } from 'react-native';
+import { Dimensions, PixelRatio, Platform, SafeAreaView } from 'react-native';
+import Constants from 'expo-constants';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -17,6 +18,7 @@ export const isBigDevice = width > 1100;
 export const relativeY = (num: number) => (height - diff / 2) * (num / 100);
 export const relativeX = (num: number) => width * (num / 100);
 export const isIOS = Platform.OS === 'ios';
+export const statusBarHeight = Constants.statusBarHeight || relativeY(5);
 export function normalize(size: number) {
   const newSize = relativeY(size * scale);
   if (Platform.OS === 'ios') {
