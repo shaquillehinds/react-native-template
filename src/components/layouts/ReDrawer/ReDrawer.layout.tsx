@@ -1,11 +1,8 @@
 import { relativeX } from '@utils/constants/Layout.const';
-import React, { PropsWithChildren, useRef, useState } from 'react';
-import { View, Animated as RNAnimated } from 'react-native';
+import React, { PropsWithChildren, useState } from 'react';
+import { View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
-  interpolate,
-  call,
-  useCode,
   runOnJS,
   runOnUI,
   SharedValue,

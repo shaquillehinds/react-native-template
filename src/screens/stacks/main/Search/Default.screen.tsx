@@ -11,6 +11,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { SCREEN_WIDTH } from '@utils/constants/Layout.const';
 import { DebugLogger } from '@utils/Logger';
+import { SCREEN_HEIGHT } from '@gorhom/bottom-sheet';
 
 const log = DebugLogger('Default.screen.tsx');
 
@@ -53,10 +54,20 @@ export default function SearchScreen(
       translateY.value = event.translationY + context.value.y;
     })
     .onEnd(e => {
-      if (translateX.value > SCREEN_WIDTH / 2) {
-        translateX.value = SCREEN_WIDTH - 80;
-        // translateX.value = withDecay({ deceleration: 1, velocity: 1 });
-      } else translateX.value = 0;
+      const deceleration = 0.999;
+      translateX.value = withDecay({
+        velocity: e.velocityX,
+        deceleration,
+        clamp: [0, SCREEN_WIDTH - 100],
+      });
+      translateY.value = withDecay({
+        velocity: e.velocityY,
+        deceleration,
+        clamp: [0, SCREEN_HEIGHT - 200],
+      });
+      // if (translateX.value > SCREEN_WIDTH / 2) {
+      // translateX.value = SCREEN_WIDTH - 80;
+      // } else translateX.value = 0;
     });
 
   // following/trailing animation with spring effect
