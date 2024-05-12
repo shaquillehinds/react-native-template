@@ -1,16 +1,11 @@
 import React from 'react';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
-import MapView, { LatLng, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import LocationMapController from './LocationMap.controller';
+import { StyleSheet } from 'react-native';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import LocationMapController, {
+  LocationMapProps,
+  deltas,
+} from './LocationMap.controller';
 import { SCREEN_WIDTH, relativeY } from '@utils/constants/Layout.const';
-
-export interface LocationMapProps {
-  onCoordChange: (coord: LatLng) => void;
-  initialCoord?: LatLng;
-  style?: StyleProp<ViewStyle>;
-}
-
-export const deltas = { latitudeDelta: 0.004, longitudeDelta: 0.004 };
 
 export default function LocationMap(props: LocationMapProps) {
   const controller = LocationMapController(props);

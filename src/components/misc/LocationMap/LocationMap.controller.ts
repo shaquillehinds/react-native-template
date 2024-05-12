@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 import {
   LatLng,
   MapPressEvent,
@@ -6,7 +7,14 @@ import {
   Region,
   UserLocationChangeEvent,
 } from 'react-native-maps';
-import { LocationMapProps, deltas } from './LocationMap';
+
+export interface LocationMapProps {
+  onCoordChange: (coord: LatLng) => void;
+  initialCoord?: LatLng;
+  style?: StyleProp<ViewStyle>;
+}
+
+export const deltas = { latitudeDelta: 0.004, longitudeDelta: 0.004 };
 
 export default function LocationMapController(props: LocationMapProps) {
   const [coord, setCoord] = useState<LatLng>({

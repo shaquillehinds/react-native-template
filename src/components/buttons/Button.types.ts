@@ -1,4 +1,6 @@
+import { Spaces } from '@styles/Spacer/Spacer.types';
 import {
+  FlexAlignType,
   GestureResponderEvent,
   StyleProp,
   TextStyle,
@@ -23,5 +25,8 @@ export interface ButtonProps {
   textStyle?: StyleProp<Animated.AnimateStyle<StyleProp<TextStyle>>>;
   animateText?: boolean;
   animate?: boolean;
+  padding?: Spaces;
+  margin?: Spaces;
+  alignSelf?: FlexAlignType;
   style?: StyleProp<Animated.AnimateStyle<StyleProp<ViewStyle>>>;
 }

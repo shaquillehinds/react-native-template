@@ -33,6 +33,15 @@
 - ios/Podfile
 - ios/nameOfProject/AppDelegate.mm
 
+### Install expo modules
+
+`npx install-expo-modules@latest`
+
+### Add the following file and contents
+
+- android/local.properties
+  `sdk.dir=/path/to/Android/sdk`
+
 ### Create a Google Firebase Project if you haven't already
 
 ### Configure the project's apps (iOS & Android)
@@ -57,16 +66,11 @@ In XCode:
 - Right click on the project name and "Add files" to the project
 - Select the downloaded GoogleService-Info.plist file from your computer, and ensure the "Copy items if needed" checkbox is enabled.
 
-### Replace the Google api key in these locations
+### [Optional] Enable Maps Platform in the console
+
+### [Optional] Create new api keys (iOS & Android) in Keys & Credentials
+
+### [Optional] Replace the Google api key in these locations
 
 - android/app/src/main/AndroidManifest.xml
 - ios/NameOfProject/AppDelegate.mm
-
-### Install expo modules
-
-`npx install-expo-modules@latest`
-
-### Add the following file and contents
-
-- android/local.properties
-  `sdk.dir=/path/to/Android/sdk`
