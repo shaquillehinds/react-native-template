@@ -70,8 +70,3 @@ In XCode:
 
 - android/local.properties
   `sdk.dir=/path/to/Android/sdk`
-
-Copy all the required files to new project
-Install expo modules
-Clean and install packages again
-If you have splashscreen images then install them with expo-splash-screen cli

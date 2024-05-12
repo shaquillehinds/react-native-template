@@ -8,7 +8,7 @@ PODS:
   - EXImageLoader (4.7.0):
     - ExpoModulesCore
     - React-Core
-  - Expo (51.0.3):
+  - Expo (51.0.2):
     - ExpoModulesCore
   - ExpoAsset (10.0.6):
     - ExpoModulesCore
@@ -1879,7 +1879,7 @@ SPEC CHECKSUMS:
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   EXConstants: 9a008dbf262550884e6280dea95b81b51f65ea6f
   EXImageLoader: ab589d67d6c5f2c33572afea9917304418566334
-  Expo: 355c270dc37b2c432fa9232a1d07064869f05c24
+  Expo: a615f2b4d9412683c7c63ce20b376a3ab0c8af83
   ExpoAsset: 9b7433ecc5f1b608ccbb823492e062bde944abd2
   ExpoFileSystem: 80bfe850b1f9922c16905822ecbf97acd711dc51
   ExpoFont: 331cf28d549edc7b6300d3be19302fc5069d9bb1
@@ -1981,6 +1981,6 @@ SPEC CHECKSUMS:
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 348f8b538c3ed4423eb58a8e5730feec50bce372
 
-PODFILE CHECKSUM: d675097233a17d696ae741d4ad88c0d454287f61
+PODFILE CHECKSUM: 73e720308db39c208772f440e3d392571758cdb3
 
 COCOAPODS: 1.15.2

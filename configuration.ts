@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 interface Configuration {
   mode: 'dev' | 'staging' | 'prod';
   version: string;

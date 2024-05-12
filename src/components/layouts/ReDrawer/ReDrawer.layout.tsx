@@ -38,10 +38,12 @@ export default function useReDrawer({
   const drawerWidth = drawerW || defaultDrawerWidth;
 
   const closeDrawerOnUI = () => {
+    'worklet';
     translateX.value = withSpring(0, { overshootClamping: true });
     trackingX.value = 0;
   };
   const openDrawerOnUI = () => {
+    'worklet';
     translateX.value = withSpring(drawerWidth, {
       overshootClamping: true,
     });

@@ -4,7 +4,6 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import AppLinkingConfiguration from './Main.linkingConfiguration';
 import { relativeY } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
 import { StyleSheet } from 'react-native';
@@ -15,6 +14,7 @@ import { useTypedSelector } from '@hooks/useTypedSelector';
 import ReDrawer from '@components/layouts/ReDrawer';
 import { useActions } from '@hooks/useActions';
 import { useSharedValue } from 'react-native-reanimated';
+import AppLinkingConfiguration from './Main.LinkingConfiguration';
 
 const BottomTab = createBottomTabNavigator<MainBottomTabParamList>();
 function EmptyComponent() {
