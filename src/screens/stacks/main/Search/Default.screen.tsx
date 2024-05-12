@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import ScreenLayout from '@components/layouts/Screen.layout';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -10,10 +10,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { SCREEN_WIDTH } from '@utils/constants/Layout.const';
-import { DebugLogger } from '@utils/Logger';
 import { SCREEN_HEIGHT } from '@gorhom/bottom-sheet';
-
-const log = DebugLogger('Default.screen.tsx');
 
 //custom hook
 interface AnimatedPosition {
@@ -35,7 +32,7 @@ const useFollowAnimatedPosition = ({ x, y }: AnimatedPosition) => {
 
 export default function SearchScreen(
   // MainNavationtionProps.{Name of stack}<{Name of screen}>
-  props: MainNavigationProps.Search<'Default'>,
+  _: MainNavigationProps.Search<'Default'>,
 ) {
   // Basic gesture handling (translate x and y on finger drag)
 
@@ -88,14 +85,13 @@ export default function SearchScreen(
     y: redFollowY,
   });
 
+  const redCircle = { backgroundColor: 'red' };
+  const greenCircle = { backgroundColor: 'green' };
+
   return (
     <ScreenLayout>
-      <Animated.View
-        style={[styles.circle, { backgroundColor: 'green' }, rGreenFollowStyle]}
-      />
-      <Animated.View
-        style={[styles.circle, { backgroundColor: 'red' }, rRedCircleStyle]}
-      />
+      <Animated.View style={[styles.circle, greenCircle, rGreenFollowStyle]} />
+      <Animated.View style={[styles.circle, redCircle, rRedCircleStyle]} />
       <GestureDetector gesture={gesture}>
         <Animated.View style={[styles.circle, rBlueCircleStyle]} />
       </GestureDetector>

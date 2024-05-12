@@ -1,27 +1,11 @@
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
-import {
-  Animated,
-  Easing,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {
-  relativeX,
-  relativeY,
-  SCREEN_WIDTH,
-} from '@utils/constants/Layout.const';
+import { Animated, Easing, StyleSheet, TouchableOpacity } from 'react-native';
+import { relativeY, SCREEN_WIDTH } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
 import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 import { Tab, tabs } from '../Main.tabs';
-import { DebugLogger } from '@utils/Logger';
 import { useIsFocused } from '@react-navigation/native';
 import { Body } from '@components/typography';
-import User from '@components/svgs/filled/User';
-import Profile from '@components/svgs/outline/Profile';
-import FilledProfile from '@components/svgs/filled/Profile';
-
-const log = DebugLogger('TabButton.animated.tsx');
 
 export interface TabButtonProps extends BottomTabBarButtonProps, Tab {
   name: keyof MainBottomTabParamList;
@@ -31,7 +15,6 @@ export interface TabButtonProps extends BottomTabBarButtonProps, Tab {
 export default function TabButton(props: PropsWithChildren<TabButtonProps>) {
   const translateY = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(1)).current;
-  const adjustY = useRef(new Animated.Value(0)).current;
 
   const slideIn = Animated.spring(translateY, {
     useNativeDriver: true,

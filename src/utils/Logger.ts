@@ -20,6 +20,9 @@ export function Logger(input: any[], source = 'Logger') {
   }
 }
 
+interface DebugLoggerOpts {
+  mute?: boolean;
+}
 /**
  *
  * This returns a debugging logger keeps takes a location and keeps track of it when the logger function is called
@@ -27,7 +30,8 @@ export function Logger(input: any[], source = 'Logger') {
  * @param {source} "file name"
  *
  */
-export function DebugLogger(source: string) {
+export function DebugLogger(source: string, opts?: DebugLoggerOpts) {
+  if (opts?.mute && !CONFIG.runMutedLogs) return () => {};
   return (...args: any[]) => Logger(args, source + '/');
 }
 

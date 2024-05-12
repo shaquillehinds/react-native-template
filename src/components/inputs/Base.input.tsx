@@ -1,19 +1,45 @@
 import { Body } from '@components/typography';
-import { fontSizes } from '@components/typography/Base.text';
 import {
   borderSizes,
+  fontSizes,
+  isIOS,
   radiusSizes,
   relativeX,
   relativeY,
 } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
-import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import React, { useMemo } from 'react';
+import {
+  GestureResponderEvent,
+  StyleSheet,
+  TextInput,
+  TextStyle,
+  View,
+} from 'react-native';
 import { BaseInputProps } from './Inputs.types';
 
 export default function Base(props: BaseInputProps) {
+  const style: TextStyle = useMemo(
+    () => ({
+      borderColor: props.borderColor,
+      paddingTop: props.multiline && isIOS ? relativeY(1) : 0,
+      paddingBottom: props.multiline && isIOS ? relativeY(1) : 0,
+      fontSize: props.fontSize ? fontSizes[props.fontSize] : fontSizes.bodyM,
+      borderRadius: props.borderRadius
+        ? radiusSizes[props.borderRadius]
+        : radiusSizes.soft,
+      borderWidth: props.borderWidth
+        ? borderSizes[props.borderWidth]
+        : undefined,
+      backgroundColor: theme.lightBackground,
+      color: theme.typeface.primary,
+    }),
+    [theme.mode],
+  );
+  const stopPropagation = (event: GestureResponderEvent) =>
+    event.stopPropagation();
   return (
-    <View>
+    <View style={props.style}>
       {props.titleText ? (
         <Body
           margin={[0, 0, 1, 1]}
@@ -31,35 +57,39 @@ export default function Base(props: BaseInputProps) {
               : relativeX(75),
           },
           styles.inputContainer,
+          props.containerStyle,
         ]}>
-        <TextInput
-          numberOfLines={props.numberOfLines}
-          multiline={props.multiline}
-          style={[
-            styles.input,
-            {
-              borderColor: props.borderColor,
-              fontSize: props.fontSize
-                ? fontSizes[props.fontSize]
-                : fontSizes.bodyM,
-              borderRadius: props.borderRadius
-                ? radiusSizes[props.borderRadius]
-                : radiusSizes.soft,
-              borderWidth: props.borderWidth
-                ? borderSizes[props.borderWidth]
-                : borderSizes.razor,
-            },
-
-            props.rightIcon ? { paddingRight: relativeX(9) } : undefined,
-            props.textInputStyle,
-          ]}
-          placeholderTextColor={
-            props.placeholderColor
-              ? theme.typeface[props.placeholderColor]
-              : theme.typeface.secondary
-          }
-          placeholder={props.placeholder}
-        />
+        {props.CustomInputComponent ? (
+          props.CustomInputComponent
+        ) : (
+          <TextInput
+            ref={props.ref}
+            onTouchStart={props.onTouchStart || stopPropagation}
+            numberOfLines={props.numberOfLines}
+            onChangeText={props.onChangeText}
+            multiline={props.multiline}
+            onBlur={props.onBlur}
+            value={props.value}
+            keyboardType={props.keyboardType}
+            textAlign={props.textAlign}
+            autoCorrect={props.autoCorrect}
+            onSubmitEditing={props.onSubmitEditing}
+            secureTextEntry={props.secureTextEntry}
+            returnKeyType={props.returnKeyType}
+            style={[
+              styles.input,
+              style,
+              props.rightIcon ? { paddingRight: relativeX(9) } : undefined,
+              props.textInputStyle,
+            ]}
+            placeholderTextColor={
+              props.placeholderColor
+                ? theme.typeface[props.placeholderColor]
+                : theme.typeface.secondary
+            }
+            placeholder={props.placeholder}
+          />
+        )}
         {props.rightIcon ? (
           <View style={[styles.inputIconContainer]}>{props.rightIcon}</View>
         ) : undefined}
@@ -78,13 +108,16 @@ export default function Base(props: BaseInputProps) {
 }
 
 const styles = StyleSheet.create({
-  inputContainer: { position: 'relative', justifyContent: 'center' },
+  inputContainer: {
+    position: 'relative',
+    justifyContent: 'center',
+  },
   input: {
-    backgroundColor: theme.input,
     paddingHorizontal: relativeX(3),
-    paddingBottom: relativeY(1.5),
+    paddingVertical: 0,
+    height: relativeY(6),
+    alignItems: 'center',
     fontSize: fontSizes.bodyM,
-    paddingTop: relativeY(1.5),
     borderRadius: radiusSizes.soft,
     borderWidth: borderSizes.razor,
     borderColor: 'transparent',

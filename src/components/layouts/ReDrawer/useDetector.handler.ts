@@ -1,5 +1,5 @@
 import { Gesture } from 'react-native-gesture-handler';
-import { runOnJS, withSpring, withTiming } from 'react-native-reanimated';
+import { runOnJS, withTiming } from 'react-native-reanimated';
 import { DetectorHandlerProps } from './ReDrawer.types';
 import runOnJSHandlers from './runOnJS.handlers';
 
@@ -9,11 +9,10 @@ const useDetectorHandler = ({
   translateX,
   progress,
   contextX,
-  drawerState,
   setDrawerState,
 }: DetectorHandlerProps) => {
   const detectorHandler = Gesture.Pan()
-    .onStart(event => {
+    .onStart(() => {
       contextX.value = trackingX.value;
       runOnJS(runOnJSHandlers.onStartJS)({ setDrawerState });
     })
@@ -27,7 +26,7 @@ const useDetectorHandler = ({
       }
       trackingX.value = event.translationX + contextX.value;
     })
-    .onEnd(event => {
+    .onEnd(() => {
       if (progress.value >= 0.5) {
         trackingX.value = drawerWidth;
         translateX.value = withTiming(drawerWidth, { duration: 200 });
@@ -36,7 +35,7 @@ const useDetectorHandler = ({
         translateX.value = withTiming(0, { duration: 200 });
       }
     })
-    .onFinalize(e => {
+    .onFinalize(() => {
       runOnJS(runOnJSHandlers.onFinalizeJS)({
         progressValue: progress.value,
         setDrawerState,

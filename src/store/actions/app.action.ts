@@ -40,6 +40,16 @@ interface SetReDrawer {
   payload: ReDrawer;
 }
 
+interface SetInAppNotification {
+  type: AppActionType.SET_IN_APP_NOTIFICATION;
+  payload: InAppNotification;
+}
+
+interface SetAppStatus {
+  type: AppActionType.SET_APP_STATUS;
+  payload: import('react-native').AppStateStatus;
+}
+
 export type AppAction =
   | SetFirstDownloadAction
   | SetLoaded
@@ -48,4 +58,6 @@ export type AppAction =
   | SetDrawerLockMode
   | SetBotNavVis
   | SetInternetAccess
-  | SetReDrawer;
+  | SetReDrawer
+  | SetInAppNotification
+  | SetAppStatus;

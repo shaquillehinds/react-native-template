@@ -1,4 +1,4 @@
-import { Dimensions, PixelRatio, Platform, SafeAreaView } from 'react-native';
+import { Dimensions, PixelRatio, Platform } from 'react-native';
 import Constants from 'expo-constants';
 
 const width = Dimensions.get('screen').width;
@@ -18,7 +18,9 @@ export const isBigDevice = width > 1100;
 export const relativeY = (num: number) => (height - diff / 2) * (num / 100);
 export const relativeX = (num: number) => width * (num / 100);
 export const isIOS = Platform.OS === 'ios';
-export const statusBarHeight = Constants.statusBarHeight || relativeY(5);
+export const statusBarHeight = isIOS
+  ? Constants.statusBarHeight || relativeY(5)
+  : 0;
 export function normalize(size: number) {
   const newSize = relativeY(size * scale);
   if (Platform.OS === 'ios') {
@@ -68,32 +70,32 @@ export const buttonSizes: {
     paddingHorizontal: relativeX(11),
     paddingVertical: relativeY(0.6),
     fontSize: 'bodyS',
-    borderRadius: 'medium',
+    borderRadius: 'sharp',
   },
   medium: {
     paddingHorizontal: relativeX(15),
     paddingVertical: relativeY(1.0),
     fontSize: 'bodyL',
-    borderRadius: 'soft',
+    borderRadius: 'medium',
   },
   large: {
     paddingHorizontal: relativeX(18),
     paddingVertical: relativeY(1.5),
-    fontSize: 'titleL',
-    borderRadius: 'curvy',
+    fontSize: 'titleS',
+    borderRadius: 'soft',
   },
   wide: {
     paddingHorizontal: relativeX(18),
     paddingVertical: relativeY(1.5),
-    fontSize: 'titleL',
-    borderRadius: 'curvy',
-    width: relativeX(85),
+    fontSize: 'titleS',
+    borderRadius: 'soft',
+    width: relativeX(88),
   },
   auto: {
     paddingHorizontal: relativeX(18),
     paddingVertical: relativeY(1.5),
-    fontSize: 'titleL',
-    borderRadius: 'curvy',
+    fontSize: 'titleS',
+    borderRadius: 'soft',
     width: '100%',
   },
 };

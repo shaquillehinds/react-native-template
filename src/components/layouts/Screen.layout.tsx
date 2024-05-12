@@ -1,15 +1,12 @@
 import { transformSpacing } from '@styles/Spacer/Spacer.style';
 import { Spacing } from '@styles/Spacer/Spacer.types';
-import {
-  normalize,
-  relativeY,
-  SCREEN_WIDTH,
-} from '@utils/constants/Layout.const';
+import { normalize, relativeY } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
 import React, { PropsWithChildren, useMemo } from 'react';
 import {
   GestureResponderEvent,
   LayoutChangeEvent,
+  SafeAreaView,
   StyleProp,
   View,
   ViewStyle,
@@ -32,8 +29,8 @@ export default function ScreenLayout(
       display: 'flex',
       flex: 1,
       backgroundColor: theme.background,
-      alignItems: props.center ? 'center' : undefined,
-      justifyContent: props.centerY ? 'center' : undefined,
+      alignItems: props.center ? 'center' : 'flex-start',
+      justifyContent: props.centerY ? 'center' : 'flex-start',
       height: props.height && normalize(props.height),
       paddingBottom: relativeY(7.8),
       ...transformSpacing({ padding: props.padding, margin: props.margin }),
@@ -46,6 +43,7 @@ export default function ScreenLayout(
       onTouchEnd={props.onTouchEnd}
       onLayout={props.onLayout}
       style={[style, props.style]}>
+      {props?.safe && <SafeAreaView />}
       {props.children}
     </View>
   );

@@ -1,4 +1,4 @@
-import { Animated, StyleProp, ViewStyle } from 'react-native';
+import { StyleProp, ViewStyle } from 'react-native';
 import { SharedValue } from 'react-native-reanimated';
 
 export interface ReDrawerStylesProps {

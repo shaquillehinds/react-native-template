@@ -2,7 +2,7 @@ import { transformSpacing } from '@styles/Spacer/Spacer.style';
 import { fontSizes } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
 import React, { PropsWithChildren } from 'react';
-import { Text } from 'react-native';
+import { Text, TextStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { BaseTextProps } from './Text.types';
 
@@ -28,27 +28,29 @@ export default function Base({
   padding,
   margin,
   animate,
+  center,
+  onPress,
 }: PropsWithChildren<BaseTextProps>) {
   const TextComponent = animate
     ? Animated.Text
     : (Text as typeof Animated.Text);
+  const styles: TextStyle = {
+    fontFamily: fontStyle,
+    fontSize: fontSizes[fontSize],
+    color: customColor || theme.typeface[color],
+    textAlign: center ? 'center' : 'left',
+    letterSpacing: letterSpacing ? spacings[letterSpacing] : undefined,
+    lineHeight:
+      lineHeight && fontSize
+        ? heights[lineHeight] * fontSizes[fontSize]
+        : undefined,
+    ...transformSpacing({ margin, padding }),
+  };
   return (
     <TextComponent
+      onPress={onPress}
       numberOfLines={numberOfLines}
-      style={[
-        {
-          fontFamily: fontStyle,
-          fontSize: fontSizes[fontSize],
-          color: customColor || theme.typeface[color],
-          letterSpacing: letterSpacing ? spacings[letterSpacing] : undefined,
-          lineHeight:
-            lineHeight && fontSize
-              ? heights[lineHeight] * fontSizes[fontSize]
-              : undefined,
-          ...transformSpacing({ margin, padding }),
-        },
-        style,
-      ]}>
+      style={[styles, style]}>
       {children}
     </TextComponent>
   );

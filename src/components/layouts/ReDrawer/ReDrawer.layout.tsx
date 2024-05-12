@@ -1,8 +1,9 @@
-import { relativeX } from '@utils/constants/Layout.const';
+import { relativeX, relativeY } from '@utils/constants/Layout.const';
 import React, { PropsWithChildren, useState } from 'react';
 import { View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  interpolate,
   runOnJS,
   runOnUI,
   SharedValue,
@@ -14,14 +15,10 @@ import Animated, {
 import useReDrawerStyles from './ReDrawer.styles';
 import { DrawerState, ReDrawerLayoutProps } from './ReDrawer.types';
 import useDetectorHandler from './useDetector.handler';
-import { DebugLogger } from '@utils/Logger';
 import runOnJSHandlers from './runOnJS.handlers';
-import shadowStyles from '@styles/Shadow.style';
-
-const log = DebugLogger('ReDrawer.layout.tsx');
 
 const defaultDrawerWidth = relativeX(55);
-const defaultDetectorWidth = relativeX(10);
+const defaultDetectorWidth = relativeX(8);
 
 export default function useReDrawer({
   trackingX,
@@ -52,7 +49,9 @@ export default function useReDrawer({
   };
   const closeDrawer = () => runOnUI(closeDrawerOnUI)();
 
-  const openDrawer = () => runOnUI(openDrawerOnUI)();
+  const openDrawer = () => {
+    runOnUI(openDrawerOnUI)();
+  };
 
   return {
     openDrawer,
@@ -64,10 +63,14 @@ export default function useReDrawer({
       const progress = useDerivedValue(() => translateX.value / drawerWidth);
       const [drawerState, setDrawerState] = useState<DrawerState>('closed');
 
+      const radius = relativeY(5);
       const scale = useDerivedValue(
-        // () => interpolate(progress.value, [0, 1], [1, scaleAmount]),
         () =>
           ((1 - scaleAmount) / (0 - 1)) * (progress.value - 1) + scaleAmount,
+        [],
+      );
+      const borderRadius = useDerivedValue(
+        () => interpolate(progress.value, [0, 1], [0, radius]),
         [],
       );
 
@@ -94,7 +97,10 @@ export default function useReDrawer({
         backgroundColor: props.backgroundColor,
         drawerWidth:
           (props.drawerWidth || defaultDrawerWidth) * (2 - scaleAmount),
-        edgeWidth: props.edgeWidth || defaultDetectorWidth,
+        edgeWidth:
+          props.edgeWidth !== undefined
+            ? props.edgeWidth
+            : defaultDetectorWidth,
       });
 
       const drawerAnimatedStyles = useAnimatedStyle(() => ({
@@ -107,6 +113,10 @@ export default function useReDrawer({
 
       const appAnimatedStyles = useAnimatedStyle(() => ({
         transform: [{ translateX: translateX.value }, { scale: scale.value }],
+      }));
+
+      const appContainerAnimatedStyles = useAnimatedStyle(() => ({
+        borderRadius: borderRadius.value,
       }));
 
       const tapGesture = Gesture.Tap().onEnd(() => {
@@ -128,8 +138,12 @@ export default function useReDrawer({
           </GestureDetector>
           {/* App */}
           <GestureDetector gesture={tapGesture}>
-            <Animated.View style={[shadowStyles(), appAnimatedStyles]}>
-              <View style={[styles.appContainer]}>{props.children}</View>
+            <Animated.View
+              style={[styles.animationContainer, appAnimatedStyles]}>
+              <Animated.View
+                style={[styles.appContainer, appContainerAnimatedStyles]}>
+                {props.children}
+              </Animated.View>
               <GestureDetector gesture={appDetectorHandler}>
                 <View style={styles.gestureDetectorArea} />
               </GestureDetector>

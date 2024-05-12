@@ -26,3 +26,8 @@ type MainBottomTabParamList = {
   Settings: import('@react-navigation/native').NavigatorScreenParams<SettingsStackParamList>;
   Slider: any;
 };
+
+type AllStackParamList = HomeStackParamList &
+  SearchStackParamList &
+  ProfileStackParamList &
+  SearchStackParamList;

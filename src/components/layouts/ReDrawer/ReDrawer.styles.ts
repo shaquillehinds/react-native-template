@@ -32,8 +32,9 @@ export default function useReDrawerStyles(props: ReDrawerStylesProps) {
         },
         gestureDetectorArea: {
           width: props.edgeWidth,
-          height: SCREEN_HEIGHT,
+          height: relativeY(85),
           position: 'absolute',
+          bottom: 0,
           left: 0,
           zIndex: 999999,
         },
@@ -43,8 +44,13 @@ export default function useReDrawerStyles(props: ReDrawerStylesProps) {
           height: SCREEN_HEIGHT,
           backgroundColor: 'rgba(0,0,0,.3)',
         },
+        animationContainer: {
+          backgroundColor: '#FFF',
+          borderRadius: relativeY(5),
+          ...shadowStyles(),
+        },
       }),
-    [props.backgroundColor],
+    [props.backgroundColor, props.edgeWidth],
   );
   return styles;
 }

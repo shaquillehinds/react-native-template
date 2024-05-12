@@ -1,15 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { useMemo, useState } from 'react';
+import {
+  BottomTabBarButtonProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLinkingConfiguration from './Main.linkingConfiguration';
-import { radiusSizes, relativeY } from '@utils/constants/Layout.const';
+import { relativeY } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { tabs } from './Main.tabs';
+import { StyleSheet } from 'react-native';
+import { Tab, tabs } from './Main.tabs';
 import TabSlider from './components/TabSlider.animated';
 import TabButton from './components/TabButton.animated';
-import shadowStyles from '@styles/Shadow.style';
-import { DrawerLayoutProvider } from '@components/layouts/Drawer';
 import { useTypedSelector } from '@hooks/useTypedSelector';
 import ReDrawer from '@components/layouts/ReDrawer';
 import { useActions } from '@hooks/useActions';
@@ -19,6 +20,15 @@ const BottomTab = createBottomTabNavigator<MainBottomTabParamList>();
 function EmptyComponent() {
   return <></>;
 }
+
+const tabBarButton: (
+  tab: Tab,
+) => (props: BottomTabBarButtonProps) => React.ReactNode = tab => props =>
+  <TabButton {...tab} {...props} />;
+const tabBarSlider: (
+  tabIndex: number,
+) => (props: BottomTabBarButtonProps) => React.ReactNode = tabIndex => _ =>
+  <TabSlider index={tabIndex} />;
 
 export default function MainBottomTabNavigator() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -37,8 +47,7 @@ export default function MainBottomTabNavigator() {
       linking={AppLinkingConfiguration}>
       <Drawer.ReDrawerLayout
         backgroundColor={theme.primary.dark}
-        drawerComponent={() => <View />}>
-        {/* <DrawerLayoutProvider renderDrawerContentComponent={() => <View />}> */}
+        drawerComponent={EmptyComponent}>
         <BottomTab.Navigator
           initialRouteName="Home"
           sceneContainerStyle={{ backgroundColor: theme.background }}
@@ -54,7 +63,7 @@ export default function MainBottomTabNavigator() {
           }}>
           <BottomTab.Screen
             options={{
-              tabBarButton: props => <TabSlider index={tabIndex} />,
+              tabBarButton: tabBarSlider(tabIndex),
               headerShown: false,
             }}
             listeners={{ tabPress: e => e.preventDefault() }}
@@ -72,14 +81,13 @@ export default function MainBottomTabNavigator() {
                     paddingTop: relativeY(1),
                   },
                   tabBarShowLabel: false,
-                  tabBarButton: props => <TabButton {...tab} {...props} />,
+                  tabBarButton: tabBarButton(tab),
                 }}
                 component={tab.component}
               />
             );
           })}
         </BottomTab.Navigator>
-        {/* </DrawerLayoutProvider> */}
       </Drawer.ReDrawerLayout>
     </NavigationContainer>
   );
@@ -87,14 +95,6 @@ export default function MainBottomTabNavigator() {
 
 const styles = StyleSheet.create({
   tabBarStyles: {
-    // !? Shadow direction not supported on android
-    // uncomment following lines to remove line ontop of navigator
-    // ...shadowStyles({
-    //   shadowRadius: 0,
-    //   shadowOpacity: 0,
-    //   shadowOffset: { height: 0, width: 0 },
-    // }),
-    // borderTopWidth: 0,
     paddingBottom: relativeY(2.5),
     height: relativeY(8),
     position: 'absolute',

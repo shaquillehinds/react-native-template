@@ -1,11 +1,9 @@
 import { AppAction } from '@store/actions';
 import { AppActionType } from '@store/actionTypes';
-import { DebugLogger } from '@utils/Logger';
 import applyTheme from '@utils/themes/applyTheme';
 
-const log = DebugLogger('app.reducer.ts');
-
 const initialState: AppState = {
+  status: 'active',
   firstDownload: false,
   loaded: false,
   theme: 'DEFAULT',
@@ -13,6 +11,7 @@ const initialState: AppState = {
   isBotNavVisible: true,
   internetAccess: true,
   drawerRef: { current: null },
+  inAppNotification: { id: 0, title: '', type: 'success' },
 };
 
 const appReducer = (state = initialState, action: AppAction): AppState => {
@@ -34,6 +33,13 @@ const appReducer = (state = initialState, action: AppAction): AppState => {
       return { ...state, internetAccess: action.payload };
     case AppActionType.SET_RE_DRAWER:
       return { ...state, reDrawer: action.payload };
+    case AppActionType.SET_APP_STATUS:
+      return { ...state, status: action.payload };
+    case AppActionType.SET_IN_APP_NOTIFICATION:
+      const inAppNotification = action.payload;
+      const currentId = state.inAppNotification.id;
+      inAppNotification.id = currentId ? currentId + 1 : 1;
+      return { ...state, inAppNotification };
     default:
       return state;
   }

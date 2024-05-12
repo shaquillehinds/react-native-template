@@ -8,9 +8,6 @@ import { theme } from '@utils/themes';
 import { PropsWithChildren, useEffect, useRef } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { tabs } from '../Main.tabs';
-import { DebugLogger } from '@utils/Logger';
-
-const log = DebugLogger('TabSlider.tsx');
 
 export default function TabSlider({
   index,
@@ -39,7 +36,7 @@ export default function TabSlider({
   useEffect(() => {
     if (index !== undefined) slide.start();
     // expand.reset();
-    expand.start(result => contract.start());
+    expand.start(() => contract.start());
   }, [index]);
   const transform = [
     { translateX },

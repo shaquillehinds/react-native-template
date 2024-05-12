@@ -4,10 +4,7 @@ import { theme } from '@utils/themes';
 import React, { PropsWithChildren } from 'react';
 import useColorAnimation from './library/color.animation';
 import useScaleAnimation from './library/scale.animation';
-import { DebugLogger } from '@utils/Logger';
 import { useSharedValue } from 'react-native-reanimated';
-
-const log = DebugLogger('Button.animated.tsx');
 
 interface Props extends ButtonProps {
   buttonType: 'primary' | 'secondary';

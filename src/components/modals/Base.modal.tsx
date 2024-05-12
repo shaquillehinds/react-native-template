@@ -10,12 +10,9 @@ import { BlurView, VibrancyView } from '@react-native-community/blur';
 import React, { useCallback, useEffect, useState } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import Modal from 'react-native-modal';
-import { DebugLogger } from '@utils/Logger';
-
-const log = DebugLogger('Base.modal.tsx');
 
 export default function BaseModal(
-  props: React.PropsWithChildren<ConfirmModalProps>,
+  props: React.PropsWithChildren<BaseModalProps>,
 ) {
   const { setBotNavVis } = useActions();
 
@@ -32,59 +29,71 @@ export default function BaseModal(
   const modalCloseHandler = useCallback(() => {
     props.setShow(false);
     props.onBackdropPress && props.onBackdropPress();
-    setTimeout(() => setBotNavVis(true), 200);
+    if (props.disableCoverScreen) setTimeout(() => setBotNavVis(true), 200);
   }, []);
 
   const onBackdropPress = modalCloseHandler;
   const onSwipeComplete = modalCloseHandler;
-  const onModalWillShow = () => setBotNavVis(false);
+  const onModalWillShow = () =>
+    props.disableCoverScreen ? setBotNavVis(false) : undefined;
   return (
     <Modal
-      coverScreen={false}
+      coverScreen={!props.disableCoverScreen}
       deviceHeight={SCREEN_HEIGHT}
-      style={{ margin: 0 }}
+      style={styles.modal}
       hideModalContentWhileAnimating
       backdropOpacity={1}
       isVisible={props.show}
-      swipeDirection={'down'}
+      swipeDirection={props.disableSwipe ? undefined : 'down'}
       customBackdrop={
         isIOS ? (
-          <VibrancyView
-            blurAmount={2}
-            reducedTransparencyFallbackColor="black"
-            blurType={blurType}
-            onTouchEnd={onBackdropPress}
-            style={styles.backdrop}
-          />
+          <>
+            <VibrancyView
+              blurAmount={2}
+              reducedTransparencyFallbackColor="black"
+              blurType={blurType}
+              onTouchEnd={onBackdropPress}
+              style={styles.backdrop}
+            />
+            <View style={styles.absolute}>{props.backdropComponent}</View>
+          </>
         ) : (
-          <BlurView
-            onTouchEnd={onBackdropPress}
-            reducedTransparencyFallbackColor="black"
-            style={styles.backdrop}
-            blurAmount={1}
-            blurRadius={1}
-          />
+          <>
+            <BlurView
+              onTouchEnd={onBackdropPress}
+              reducedTransparencyFallbackColor="black"
+              style={styles.backdrop}
+              blurAmount={1}
+              blurRadius={1}
+            />
+            <View style={styles.absolute}>{props.backdropComponent}</View>
+          </>
         )
       }
       onModalWillShow={onModalWillShow}
       onSwipeComplete={onSwipeComplete}
       onBackdropPress={onBackdropPress}
       propagateSwipe={props.propagateSwipe}>
-      <View
-        style={[
-          styles.modal,
-          { backgroundColor: theme.background },
-          props.contentContainerStyle,
-        ]}>
-        <View style={[styles.bumper]} />
-        {props.children}
-      </View>
+      {props.children ? (
+        <View
+          style={[
+            styles.modalSheet,
+            { backgroundColor: theme.background },
+            props.contentContainerStyle,
+          ]}>
+          <View style={[styles.bumper]} />
+          {props.children}
+        </View>
+      ) : (
+        <></>
+      )}
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  modal: {
+  modal: { margin: 0 },
+  modalSheet: {
     position: 'absolute',
     bottom: 0,
     margin: 0,
@@ -102,6 +111,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
   },
+  absolute: {
+    position: 'absolute',
+  },
   bumper: {
     backgroundColor: 'rgba(156,170,180,0.3)',
     width: normalize(50),
@@ -114,17 +126,17 @@ const styles = StyleSheet.create({
   backdrop: {
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    // zIndex: 10,
-    // position: 'absolute',
-    // backgroundColor: 'rgba(0,0,0,.4)',
   },
 });
 
-interface ConfirmModalProps {
+export interface BaseModalProps {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   onBackdropPress?: () => void;
   onSwipeComplete?: () => void;
   propagateSwipe?: boolean;
+  backdropComponent?: JSX.Element;
   contentContainerStyle?: StyleProp<ViewStyle>;
+  disableCoverScreen?: boolean;
+  disableSwipe?: boolean;
 }

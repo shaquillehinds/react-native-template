@@ -3,12 +3,13 @@ import React from 'react';
 import { StatusBar, useColorScheme } from 'react-native';
 import { hideAsync } from 'expo-splash-screen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import AppProvider from 'App.Provider';
+import AppProvider from './App.Provider';
 import MainBottomTabNavigator from '@navigators/bottomtab/main/Main.tab.navigator';
 import { store } from '@store/index';
 import useFonts from '@hooks/useFonts';
 import { theme } from '@utils/themes';
 import NoInternetScreen from '@screens/global/NoInternet.screen';
+import SplashScreen from '@screens/global/Splash.screen';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -22,9 +23,9 @@ const App = () => {
     },
   };
 
-  if (!loaded) return <></>;
+  if (!loaded) return <SplashScreen darkMode={isDarkMode} />;
 
-  setTimeout(() => hideAsync(), 300);
+  setTimeout(() => hideAsync(), 50);
 
   if (!store.getState().app.internetAccess)
     return <NoInternetScreen darkMode={isDarkMode} />;

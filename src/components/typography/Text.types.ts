@@ -1,5 +1,5 @@
 import { Spacing } from '@styles/Spacer/Spacer.types';
-import { StyleProp, TextStyle } from 'react-native';
+import { GestureResponderEvent, StyleProp, TextStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 
 export interface BaseTextProps extends Spacing {
@@ -12,4 +12,6 @@ export interface BaseTextProps extends Spacing {
   letterSpacing?: LetterSpacing;
   numberOfLines?: number;
   animate?: boolean;
+  center?: boolean;
+  onPress?: (event: GestureResponderEvent) => void;
 }

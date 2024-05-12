@@ -1,13 +1,7 @@
 import React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
-import { DebugLogger } from '@utils/Logger';
 import { Heading } from '@components/typography';
-// import DraggableFlatlist from '@shaquillehinds/react-native-draggable-flatlist';
-import DraggableFlatlist from '@components/wrapped/DraggableFlatlist';
-
-const log = DebugLogger('Default.screen.tsx');
-
-const array = [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }, { a: 5 }, { a: 6 }];
+import DraggableFlatlist from '@shaquillehinds/react-native-draggable-flatlist';
 
 const renderArray = () => {
   const arr: { [key: string]: number }[] = [];
@@ -28,12 +22,12 @@ const style: StyleProp<ViewStyle> = {
 
 export default function DefaultScreen(
   // MainNavationtionProps.{Name of stack}<{Name of screen}>
-  props: MainNavigationProps.Profile<'Default'>,
+  _: MainNavigationProps.Profile<'Default'>,
 ) {
   return (
     <DraggableFlatlist<{ [key: string]: number }>
       data={renderArray()}
-      renderItem={({ item, index }) => (
+      renderItem={({ item }) => (
         <View style={style}>
           <Heading customColor="white">{item.a}</Heading>
         </View>

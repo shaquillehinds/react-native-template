@@ -1,4 +1,3 @@
-import { SharedValue } from 'react-native-reanimated';
 import { DrawerState } from './ReDrawer.types';
 
 interface UpdateDrawerState {

@@ -19,9 +19,21 @@ const DEFAULT: AppColors = {
       border: 'transparent',
     },
   },
+  complimentary: {
+    dark: '#FF9D43',
+    medium: '#FFB26B',
+    light: '#FFCEA1',
+    button: {
+      background: '#FF9D43',
+      text: '#FFF',
+      border: 'transparent',
+    },
+  },
   accent: '#2F8F89',
   warning: '#DB4132',
   background: '#FFFFFF',
+  lightBackground: '#F4F4F4',
+  extraLightBackground: '#FAFAFA',
   form: '#FFFFFF',
   input: '#F8F9FA',
   typeface: {

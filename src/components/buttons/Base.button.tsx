@@ -6,7 +6,7 @@ import {
 } from '@utils/constants/Layout.const';
 import { theme } from '@utils/themes';
 import React, { PropsWithChildren } from 'react';
-import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { TouchableOpacity, View, ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { ButtonProps } from './Button.types';
 
@@ -46,8 +46,3 @@ export default function BaseButton(props: PropsWithChildren<ButtonProps>) {
     </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  button: {},
-  textContainer: {},
-});
