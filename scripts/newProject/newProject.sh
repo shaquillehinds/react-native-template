@@ -15,7 +15,7 @@ cd ..
 npx react-native@0.74.1 init $name --version 0.74.1
 
 # Copy over root files
-cp -r reactNativeTemplate/{.vscode,scripts,src,svgToRNSvg,.eslintrc.js,.prettierrc.js,App.Provider.tsx,App.tsx,babel.config.js,configuration.ts,package.json,yarn.lock,tsconfig.json} $name
+cp -r reactNativeTemplate/{.vscode,scripts,src,svgToRNSvg,.eslintrc.js,.prettierrc.js,assets,App.Provider.tsx,App.tsx,babel.config.js,configuration.ts,package.json,yarn.lock,tsconfig.json} $name
 
 # Copy over Android files
 cp -r reactNativeTemplate/android/{build.gradle,settings.gradle} $name/android
