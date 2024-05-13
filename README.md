@@ -1,5 +1,11 @@
 # react-native-template
 
+## Automatic Installation
+
+`yarn newProject <ProjectName>`
+
+## Manual Installation
+
 ### Create a new project
 
 `npx react-native@0.74.1 init NameOfProject --version 0.74.1`
@@ -35,7 +41,9 @@
 
 ### Install expo modules
 
-`npx install-expo-modules@latest`
+`npx install-expo-modules@0.10.0`
+
+## Configuration
 
 ### Add the following file and contents
 

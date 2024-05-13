@@ -24,7 +24,8 @@
     "reinit-pod": "cd ios && rm -rf Pods && pod install && cd ..",
     "release-android": "cd android && ./gradlew bundleRelease && cd ..",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "newProject": "bash scripts/newProject/newProject.sh"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "4",
@@ -103,6 +104,7 @@
     "jest": "^29.6.3",
     "prettier": "2.8.8",
     "react-test-renderer": "18.2.0",
+    "ts-node": "^10.9.2",
     "typescript": "5.0.4"
   },
   "jest": {
