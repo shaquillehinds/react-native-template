@@ -41,7 +41,7 @@ sed "s/reactnativetemplate/$lowerName/ig" reactNativeTemplate/android/app/build.
 sed "s/reactnativetemplate/$lowerName/ig" reactNativeTemplate/android/app/src/main/AndroidManifest.xml > $name/android/app/src/main/AndroidManifest.xml
 # android/app/src/main/java/com/nameofproject/MainApplication.kt [common]
 sed "s/reactnativetemplate/$lowerName/ig" reactNativeTemplate/android/app/src/main/java/com/reactnativetemplate/MainApplication.kt > $name/android/app/src/main/java/com/$lowerName/MainApplication.kt
-android/app/src/main/java/com/nameofproject/MainActivity.kt [Both]
+#android/app/src/main/java/com/nameofproject/MainActivity.kt [Both]
 sed "s/reactnativetemplate/$lowerName/g" reactNativeTemplate/android/app/src/main/java/com/reactnativetemplate/MainActivity.kt > $name/android/app/src/main/java/com/$lowerName/MainActivity.kt
 mv $name/android/app/src/main/java/com/$lowerName/MainActivity.kt $name/android/app/src/main/java/com/$lowerName/MainActivity2.kt
 sed "s/reactNativeTemplate/$name/g" $name/android/app/src/main/java/com/$lowerName/MainActivity2.kt > $name/android/app/src/main/java/com/$lowerName/MainActivity.kt
