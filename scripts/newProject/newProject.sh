@@ -47,13 +47,15 @@ sed "s/reactNativeTemplate/$name/g" reactNativeTemplate/ios/Podfile > $name/ios/
 # ios/nameOfProject/AppDelegate.mm
 sed "s/reactNativeTemplate/$name/g" reactNativeTemplate/ios/reactNativeTemplate/AppDelegate.mm > $name/ios/$name/AppDelegate.mm
 # ios/nameOfProject/Info.plist
-sed "s/LaunchScreen/SplashScreen/g" $name/ios/$name/Info.plist > $name/ios/$name/Info.plist
+mv $name/ios/$name/Info.plist $name/ios/$name/Info2.plist 
+sed "s/LaunchScreen/SplashScreen/g" $name/ios/$name/Info2.plist > $name/ios/$name/Info.plist
+rm $name/ios/$name/Info2.plist  
 
 cd $name
 
 npx install-expo-modules@0.10.0
 
-rm .yarnrc.ymlrm .yarnrc.yml
+rm .yarnrc.yml
 
 yarn clean && yarn setup
 
