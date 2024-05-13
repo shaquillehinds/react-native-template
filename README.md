@@ -39,6 +39,10 @@
 - ios/Podfile
 - ios/nameOfProject/AppDelegate.mm
 
+### Set SplashScreen as Launch screen file
+
+In ios/nameOfProject/Info.plist, replace LaunchScreen with SplashScreen
+
 ### Install expo modules
 
 `npx install-expo-modules@0.10.0`
@@ -49,6 +53,13 @@
 
 - android/local.properties
   `sdk.dir=/path/to/Android/sdk`
+
+### Add SplashScreen.storyboard reference in XCode
+
+1. Open project in XCode
+2. Right click on the project folder (the folder that contains main and Launchscreen)
+3. Click Add files to "<projectName>"
+4. Select SplashScreen.storyboard and click add (ios/<projectName>/SplashScreen.storyboard)
 
 ### Create a Google Firebase Project if you haven't already
 

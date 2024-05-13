@@ -46,6 +46,8 @@ sed "s/reactNativeTemplate/$name/g" reactNativeTemplate/android/app/src/main/jav
 sed "s/reactNativeTemplate/$name/g" reactNativeTemplate/ios/Podfile > $name/ios/Podfile
 # ios/nameOfProject/AppDelegate.mm
 sed "s/reactNativeTemplate/$name/g" reactNativeTemplate/ios/reactNativeTemplate/AppDelegate.mm > $name/ios/$name/AppDelegate.mm
+# ios/nameOfProject/Info.plist
+sed "s/LaunchScreen/SplashScreen/g" $name/ios/$name/Info.plist > $name/ios/$name/Info.plist
 
 cd $name
 
