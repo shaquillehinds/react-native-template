@@ -1,5 +1,5 @@
 import ArrowLeft from '@components/svgs/outline/ArrowLeft';
-import { relativeX, relativeY } from '@utils/constants/Layout.const';
+import { relativeX } from '@utils/constants/Layout.const';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Spaces } from '@styles/Spacer/Spacer.types';
@@ -11,7 +11,7 @@ export default function BackButton(props: {
   margin?: Spaces;
 }) {
   const style = {
-    backgroundColor: props.backgroundColor || 'rgba(0,0,0,.2)',
+    backgroundColor: props.backgroundColor || 'transparent',
   };
   return (
     <View
@@ -33,8 +33,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 50,
     padding: relativeX(1),
-    marginLeft: relativeX(3),
-    marginTop: relativeY(2),
+    marginLeft: relativeX(4),
     zIndex: 100,
     flexDirection: 'row',
   },

@@ -1,3 +1,4 @@
+import { Spacing } from '@styles/Spacer/Spacer.types';
 import React from 'react';
 import {
   GestureResponderEvent,
@@ -12,14 +13,16 @@ import {
   ViewStyle,
 } from 'react-native';
 
-export interface BaseInputProps {
+export interface BaseInputProps extends Spacing {
   ref?: React.LegacyRef<TextInput>;
+  disabled?: boolean;
   multiline?: boolean;
   numberOfLines?: number;
   inputWidth?: number;
   textInputStyle?: StyleProp<TextStyle>;
   borderWidth?: BorderSize;
   fontSize?: FontSize;
+  fontStyle?: FontStyle;
   placeholder?: string;
   placeholderColor?: FontColor;
   titleText?: string;

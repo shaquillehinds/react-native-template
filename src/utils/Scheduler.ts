@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 
 export class Schedule extends EventEmitter {
-  handle?: number;
+  handle?: NodeJS.Timeout;
   action: (schedule: Schedule) => void;
   time: number;
   constructor(action: (schedule: Schedule) => void, time: number) {
@@ -27,7 +27,7 @@ export class Schedule extends EventEmitter {
 }
 
 export class Timer extends EventEmitter {
-  handle?: number;
+  handle?: NodeJS.Timeout;
   action: () => void;
   time: number;
   constructor(action: () => void, time: number) {

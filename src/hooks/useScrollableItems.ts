@@ -72,6 +72,10 @@ export default function useScrollableItems<
     });
     setItems(updatedItems);
   };
+
+  const removeListItem = (id: string, key: keyof ListItem) => {
+    setItems(prev => prev.filter(i => i[key] !== id));
+  };
   return {
     items,
     setItems,
@@ -81,6 +85,7 @@ export default function useScrollableItems<
     refreshingItems,
     loading,
     updateListItem,
+    removeListItem,
     fetchItems,
     setLoading,
   };

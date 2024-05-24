@@ -24,6 +24,6 @@ type LineHeight = 'short' | 'tall';
 
 type LetterSpacing = 'wide' | 'extraWide';
 
-type FontColor = 'primary' | 'secondary' | 'tertiary' | 'warning';
+type FontColor = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'white';
 
 type ButtonColor = keyof ButtonColors;

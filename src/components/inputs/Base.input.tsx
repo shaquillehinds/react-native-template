@@ -12,19 +12,26 @@ import React, { useMemo } from 'react';
 import {
   GestureResponderEvent,
   StyleSheet,
+  Text,
   TextInput,
   TextStyle,
   View,
 } from 'react-native';
 import { BaseInputProps } from './Inputs.types';
+import { transformSpacing } from '@styles/Spacer/Spacer.style';
 
 export default function Base(props: BaseInputProps) {
   const style: TextStyle = useMemo(
     () => ({
       borderColor: props.borderColor,
-      paddingTop: props.multiline && isIOS ? relativeY(1) : 0,
+      paddingTop: props.disabled
+        ? relativeY(1.5)
+        : props.multiline && isIOS
+        ? relativeY(1)
+        : 0,
       paddingBottom: props.multiline && isIOS ? relativeY(1) : 0,
       fontSize: props.fontSize ? fontSizes[props.fontSize] : fontSizes.bodyM,
+      fontFamily: props.fontStyle ? props.fontStyle : 'Inter',
       borderRadius: props.borderRadius
         ? radiusSizes[props.borderRadius]
         : radiusSizes.soft,
@@ -39,12 +46,16 @@ export default function Base(props: BaseInputProps) {
   const stopPropagation = (event: GestureResponderEvent) =>
     event.stopPropagation();
   return (
-    <View style={props.style}>
+    <View
+      style={[
+        transformSpacing({ margin: props.margin, padding: props.padding }),
+        props.style,
+      ]}>
       {props.titleText ? (
         <Body
-          margin={[0, 0, 1, 1]}
-          color={'secondary'}
+          margin={[0, 0, 1.5, 1]}
           fontStyle="PoppinsSemiBold"
+          fontSize="bodyL"
           style={props.titleTextStyles}>
           {props.titleText}
         </Body>
@@ -61,6 +72,18 @@ export default function Base(props: BaseInputProps) {
         ]}>
         {props.CustomInputComponent ? (
           props.CustomInputComponent
+        ) : props.disabled ? (
+          <Text
+            ref={props.ref}
+            numberOfLines={props.numberOfLines}
+            style={[
+              styles.input,
+              style,
+              props.rightIcon ? { paddingRight: relativeX(9) } : undefined,
+              props.textInputStyle,
+            ]}>
+            {props.value}
+          </Text>
         ) : (
           <TextInput
             ref={props.ref}
@@ -121,6 +144,7 @@ const styles = StyleSheet.create({
     borderRadius: radiusSizes.soft,
     borderWidth: borderSizes.razor,
     borderColor: 'transparent',
+    overflow: 'hidden',
   },
   inputIconContainer: {
     position: 'absolute',

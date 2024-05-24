@@ -5,5 +5,5 @@ import { ButtonProps } from './Button.types';
 interface Props extends ButtonProps {}
 
 export default function PrimaryButton(props: PropsWithChildren<Props>) {
-  return <BaseButton {...props} />;
+  return <BaseButton buttonSize="wide" {...props} fontColor="white" />;
 }

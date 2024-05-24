@@ -84,3 +84,17 @@ export function objToQueryStr(obj: { [key: string]: any }) {
     .map(pair => `${pair[0]}=${pair[1]}`)
     .join('&');
 }
+
+export function getTodayInSeconds() {
+  const now = new Date();
+  let seconds = now.getHours() * 3600;
+  seconds += now.getMinutes() * 60;
+  seconds += now.getSeconds();
+  return seconds;
+}
+
+export function sanitizePhoneNumber(number: string, addPlus?: boolean) {
+  number = number.replace(/(\(|\)|-|\s)/g, '');
+  if (addPlus && !number.includes('+')) number = '+' + number;
+  return number;
+}

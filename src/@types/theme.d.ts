@@ -7,6 +7,8 @@ interface AppColors {
   accent: string;
   warning: string;
   background: string;
+  border: string;
+  inputBorder: string;
   lightBackground: string;
   extraLightBackground: string;
   form: string;
@@ -23,6 +25,7 @@ interface TypefaceColor {
   secondary: string;
   tertiary: string;
   warning: string;
+  white: string;
 }
 
 interface ButtonColors {

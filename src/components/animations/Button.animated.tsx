@@ -26,11 +26,11 @@ export default function ButtonAnimated(props: PropsWithChildren<Props>) {
       activeOpacity={1}
       animate
       {...props}
-      onPressIn={e => {
+      onPressIn={async e => {
         sharedValue.value = 0.95;
         props.onPressIn && props.onPressIn(e);
       }}
-      onPressOut={e => {
+      onPressOut={async e => {
         sharedValue.value = 1;
         props.onPressOut && props.onPressOut(e);
       }}

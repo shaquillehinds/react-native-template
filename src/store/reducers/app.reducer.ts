@@ -33,6 +33,8 @@ const appReducer = (state = initialState, action: AppAction): AppState => {
       return { ...state, internetAccess: action.payload };
     case AppActionType.SET_RE_DRAWER:
       return { ...state, reDrawer: action.payload };
+    case AppActionType.SET_EFFECT_TRIGGER:
+      return { ...state, effectTrigger: action.payload };
     case AppActionType.SET_APP_STATUS:
       return { ...state, status: action.payload };
     case AppActionType.SET_IN_APP_NOTIFICATION:

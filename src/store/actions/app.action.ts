@@ -50,6 +50,11 @@ interface SetAppStatus {
   payload: import('react-native').AppStateStatus;
 }
 
+interface SetEffectTrigger {
+  type: AppActionType.SET_EFFECT_TRIGGER;
+  payload?: EffectTrigger;
+}
+
 export type AppAction =
   | SetFirstDownloadAction
   | SetLoaded
@@ -60,4 +65,5 @@ export type AppAction =
   | SetInternetAccess
   | SetReDrawer
   | SetInAppNotification
-  | SetAppStatus;
+  | SetAppStatus
+  | SetEffectTrigger;

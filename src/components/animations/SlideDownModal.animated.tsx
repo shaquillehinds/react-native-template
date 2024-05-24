@@ -19,10 +19,6 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { DebugLogger } from '@utils/Logger';
-
-const log = DebugLogger('SlideDownModal.animated.tsx');
-
 const slideDistance = -relativeY(isIOS ? 15 : 20);
 
 interface SlideDownNotificationProps extends InAppNotification {
@@ -92,9 +88,7 @@ const SlideDownModal = ({
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => {
-          log('warn', onPress);
           onPress && onPress();
-          log('warn', 'pressed here');
           slideOutAnimation(1).start();
         }}
         style={styles.container}>

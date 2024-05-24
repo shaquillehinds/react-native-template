@@ -4,6 +4,7 @@ import setDrawerRef from './setDrawerRef.actionCreator';
 import setBotNavVis from './setBotNavVis.actionCreator';
 import setReDrawer from './setReDrawer.actionCreator';
 import inAppNotification from './inAppNotification.actionCreator';
+import setEffectTrigger from './setEffectTrigger.actionCreator';
 
 export {
   loadApp,
@@ -12,4 +13,5 @@ export {
   setBotNavVis,
   setReDrawer,
   inAppNotification,
+  setEffectTrigger,
 };

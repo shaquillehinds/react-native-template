@@ -30,4 +30,5 @@ interface AppState {
   reDrawer?: import('@components/layouts/ReDrawer/ReDrawer.layout').ReDrawer;
   isBotNavVisible: boolean;
   inAppNotification: InAppNotification;
+  effectTrigger?: EffectTrigger;
 }
