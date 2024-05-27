@@ -1,5 +1,3 @@
-/* eslint-disable no-void */
-/* eslint-disable quotes */
 'use strict';
 var __awaiter =
   (this && this.__awaiter) ||
@@ -40,6 +38,7 @@ else {
   console.log('No project name provided');
 }
 function newProject() {
+  // eslint-disable-next-line no-void
   return __awaiter(this, void 0, void 0, function* () {
     const name = projectName.trim();
     console.log('executing', name);

@@ -1466,6 +1466,13 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@babel/runtime@^7.12.1", "@babel/runtime@^7.9.2":
+  version "7.24.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.6.tgz#5b76eb89ad45e2e4a0a8db54c456251469a3358e"
+  integrity sha512-Ja18XcETdEl5mzzACGd+DKgaGJzPTCow7EglgwTmHdwokzDFYh/MHua6lU6DV/hjF2IaOJ4oX2nqnjG7RElKOw==
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
 "@babel/template@^7.0.0", "@babel/template@^7.22.15", "@babel/template@^7.24.0", "@babel/template@^7.3.3":
   version "7.24.0"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.24.0.tgz#c6a524aa93a4a05d66aaf31654258fae69d87d50"
@@ -2782,10 +2789,10 @@
     component-type "^1.2.1"
     join-component "^1.1.0"
 
-"@shaquillehinds/graphql-query-builder@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@shaquillehinds/graphql-query-builder/-/graphql-query-builder-1.0.3.tgz#52cced30e826f5e2e5ca28d4a6f856ca43806430"
-  integrity sha512-1kVCYKntqSrOdfnx5CAYzvJpSUC/lRL47RMbR9owfpoFekwPwThwKiacXO8oBLaO7uBKyHCQbl2ja79x3CCxKw==
+"@shaquillehinds/graphql-query-builder@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@shaquillehinds/graphql-query-builder/-/graphql-query-builder-2.0.0.tgz#6a0aa81a404a82cd95e936347289a28cd54199a9"
+  integrity sha512-UxeAQFUlDgBKd/SXmyi/W6j99+PZ1LhP6J1h5z6UXToUjVgnIqGPfs8caKtXRGZktTxZtKALiK6lGn4d6nIhBQ==
   dependencies:
     axios "^1.4.0"
     chalk "^5.3.0"
@@ -2796,10 +2803,23 @@
   resolved "https://registry.yarnpkg.com/@shaquillehinds/react-native-draggable-flatlist/-/react-native-draggable-flatlist-0.0.8.tgz#54287c91baf79040b2fe03bd68f21bbcf0f00de6"
   integrity sha512-uI3devD1z5Fhj+ssz58DZEKOq+n28xYnzxCtYm6yLZJsqrtmJDerM/rnxf8Sfdk0GFD08aqfrY9fgjr/KLB/eg==
 
-"@shaquillehinds/rn-stack-screen-builder@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@shaquillehinds/rn-stack-screen-builder/-/rn-stack-screen-builder-0.0.1.tgz#b196d8e30a5844c7002b2f2f7a6ff03c300a8370"
-  integrity sha512-LV7Ua8KH2bNsdHbpzA3enjZJAKUlFDkmNN+NE+cNAkor+FfiiKSMeGCFbQzTDnGL0jccqk4TbPzFbZXZAc8NYg==
+"@shaquillehinds/redux-store-builder@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@shaquillehinds/redux-store-builder/-/redux-store-builder-1.1.0.tgz#0667cf911420c7e0de7b1874385b40ce15c8121d"
+  integrity sha512-oY7MrbAnoekdP+cDjGp2A0/eZ61P7vWw2LdlO9OauskFdZKyrkS3eoOoJC7hLcIohyizfr1n1TWATfyg9HBkgA==
+  dependencies:
+    chalk "^5.3.0"
+    commander "^11.0.0"
+    inquirer "^9.2.10"
+    react-redux "^8.1.2"
+    redux "^4.2.1"
+    redux-thunk "^2.4.2"
+    tscodeinject "^1.2.0"
+
+"@shaquillehinds/rn-stack-screen-builder@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@shaquillehinds/rn-stack-screen-builder/-/rn-stack-screen-builder-1.0.0.tgz#f7094e21dc2a7abe09c3a819977cfb85640d5b37"
+  integrity sha512-znuQ/+Kv8FtNQLW2/VuCP798bTRriCVPl/ScjMF0SnC0OdHz3pi8Ax9SuXyZdDN+HD7iSICi3zYW/FNBqvxGSA==
   dependencies:
     chalk "^5.3.0"
     commander "^11.0.0"
@@ -3544,10 +3564,19 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axios@1.6.8, axios@^1.4.0:
+axios@1.6.8:
   version "1.6.8"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.8.tgz#66d294951f5d988a00e87a0ffb955316a619ea66"
   integrity sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.4.0:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.2.tgz#b625db8a7051fbea61c35a3cbb3a1daa7b9c7621"
+  integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
@@ -8529,6 +8558,18 @@ react-redux@9.1.2:
     "@types/use-sync-external-store" "^0.0.3"
     use-sync-external-store "^1.0.0"
 
+react-redux@^8.1.2:
+  version "8.1.3"
+  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-8.1.3.tgz#4fdc0462d0acb59af29a13c27ffef6f49ab4df46"
+  integrity sha512-n0ZrutD7DaX/j9VscF+uTALI3oUPa/pO4Z3soOBIjuRn/FzVu6aehhysxZCLi6y7duMf52WNZGMl7CtuK5EnRw==
+  dependencies:
+    "@babel/runtime" "^7.12.1"
+    "@types/hoist-non-react-statics" "^3.3.1"
+    "@types/use-sync-external-store" "^0.0.3"
+    hoist-non-react-statics "^3.3.2"
+    react-is "^18.0.0"
+    use-sync-external-store "^1.0.0"
+
 react-refresh@^0.14.0, react-refresh@^0.14.2:
   version "0.14.2"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.2.tgz#3833da01ce32da470f1f936b9d477da5c7028bf9"
@@ -8638,10 +8679,22 @@ redux-thunk@3.1.0:
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-3.1.0.tgz#94aa6e04977c30e14e892eae84978c1af6058ff3"
   integrity sha512-NW2r5T6ksUKXCabzhL9z+h206HQw/NJkcLm1GPImRQ8IzfXwRGqjVhKJGauHirT0DAuyy6hjdnMZaRoAcy0Klw==
 
+redux-thunk@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.2.tgz#b9d05d11994b99f7a91ea223e8b04cf0afa5ef3b"
+  integrity sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==
+
 redux@5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/redux/-/redux-5.0.1.tgz#97fa26881ce5746500125585d5642c77b6e9447b"
   integrity sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==
+
+redux@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.2.1.tgz#c08f4306826c49b5e9dc901dee0452ea8fce6197"
+  integrity sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
 
 reflect.getprototypeof@^1.0.4:
   version "1.0.6"
@@ -9681,7 +9734,7 @@ ts-node@^10.9.2:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
-tscodeinject@^1.3.0:
+tscodeinject@^1.2.0, tscodeinject@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/tscodeinject/-/tscodeinject-1.3.0.tgz#6e0efd8a40aea706baf9d884980cf11314be67bb"
   integrity sha512-h3rFVt6ncDZG2KW7EyZvuF0Ph6v+op0GefaKFTOBgU7KX+9QFkW6iQLS7Lf1TyjxbobyRfM3xSOyUJaYdSgcEg==
